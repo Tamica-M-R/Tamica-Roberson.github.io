@@ -517,7 +517,8 @@ p { margin: 0 0 1em; }
 }
 .polaroid {
   --r: -3deg; --y: 0px;
-  flex: 0 0 clamp(150px, 19vw, 220px);
+  flex: 0 1 clamp(140px, 19vw, 220px);
+  min-width: 0;
   margin: 0 -8px;
   padding: 10px 10px 0;
   background: #fff;
@@ -531,6 +532,7 @@ p { margin: 0 0 1em; }
 .polaroid:nth-child(3) { --r: -1.5deg; --y: -6px; }
 .polaroid:nth-child(4) { --r: 4deg; --y: 18px; }
 .polaroid:nth-child(5) { --r: -3.5deg; --y: 4px; }
+.polaroid:nth-child(6) { --r: 2.5deg; --y: 16px; }
 .polaroid:hover { transform: translateY(-8px) rotate(0deg) scale(1.05); z-index: 2; box-shadow: var(--shadow); }
 .polaroid img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 1px; }
 .polaroid figcaption { font: italic 600 1.2rem/1.2 var(--serif); color: var(--plum); text-align: center; padding: 12px 4px 16px; }
@@ -540,7 +542,7 @@ p { margin: 0 0 1em; }
     justify-content: flex-start; overflow-x: auto; scroll-snap-type: x mandatory;
     padding: 20px 20px 36px; gap: 16px; -webkit-overflow-scrolling: touch;
   }
-  .polaroid { flex-basis: 64%; margin: 0; scroll-snap-align: center; }
+  .polaroid { flex: 0 0 64%; margin: 0; scroll-snap-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   .polaroid, .polaroid:hover { transition: none; }
