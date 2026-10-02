@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+title: Journal
+description: Style, travel, wellness and the real places behind SEASONS, from Tamica M. Roberson in Germany.
+permalink: /journal/
+---
+{% from "partials/macros.njk" import butterfly with context %}
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Journal</p>
+    <h1>Notes from Germany</h1>
+    <p class="lede">Style, travel, wellness, and the real places behind SEASONS.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    {%- if collections.journal.length %}
+    <ul class="posts">
+      {%- for post in collections.journal %}
+      <li class="post-card">
+        <a href="{{ post.url }}">
+          {%- if post.data.image %}
+          <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt or '' }}" loading="lazy">
+          {%- endif %}
+          <p class="post-card__meta"><time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>{% if post.data.book %} · {{ post.data.book }}{% endif %}</p>
+          <h2>{{ post.data.title }}</h2>
+          {%- if post.data.summary %}<p>{{ post.data.summary }}</p>{% endif %}
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- else %}
+    <div class="empty">
+      {{ butterfly("butterfly--flutter empty__mark") }}
+      <h2>The first entries are on their way</h2>
+      <p>Until then, follow along on Instagram and TikTok, or join Letters to get each new entry in your inbox.</p>
+      <div class="actions actions--center">
+        {%- for s in site.social %}
+        <a class="btn btn--ghost" href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }}</a>
+        {%- endfor %}
+        <a class="btn btn--primary" href="/letters/">Join Letters</a>
+      </div>
+    </div>
+    {%- endif %}
+  </div>
+</section>

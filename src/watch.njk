@@ -1,0 +1,44 @@
+---
+layout: layouts/base.njk
+title: Watch
+description: "Videos from Tamica M. Roberson on Instagram and TikTok, with style, travel in Europe, military spouse life and the story behind SEASONS."
+permalink: /watch/
+---
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Watch</p>
+    <h1>Short films from a life in Germany</h1>
+    <p class="lede">New videos every week: the places behind the books, outfits straight from the pages, and honest talk about healing, marriage and military life.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="follow follow--large">
+      {%- for s in site.social %}
+      <a class="follow__card" href="{{ s.url }}" target="_blank" rel="noopener">
+        <span class="follow__name">{{ s.name }}</span>
+        <span class="follow__handle">{{ s.handle }}</span>
+        <span class="follow__go">Watch on {{ s.name }}</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">What she films</p>
+      <h2>Six threads, one story</h2>
+    </div>
+    <ul class="pillars">
+      <li><h3>The story behind the story</h3><p>The real moments that became scenes in SEASONS.</p></li>
+      <li><h3>Imani’s Europe</h3><p>The places from the books, filmed where they are.</p></li>
+      <li><h3>Style from the pages</h3><p>Outfits from the novels, recreated.</p></li>
+      <li><h3>Military spouse, then and now</h3><p>Letters, moves, homecomings and the life in between.</p></li>
+      <li><h3>Thriving with Hashimoto’s</h3><p>Routines, energy, and what lives in the purse pharmacy.</p></li>
+      <li><h3>Two lives</h3><p>Xavier or Marcus? The conversation readers keep having.</p></li>
+    </ul>
+  </div>
+</section>

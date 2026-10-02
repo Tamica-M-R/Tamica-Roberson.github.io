@@ -1,0 +1,71 @@
+---
+layout: layouts/base.njk
+title: The Books
+description: Every book in SEASONS by Tamica M. Roberson, in reading order. Start with the free prequel, then Book One, then choose Xavier's Story or Marcus's Story.
+permalink: /books/
+---
+{% from "partials/macros.njk" import cover with context %}
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">The series</p>
+    <h1>SEASONS</h1>
+    <p class="lede">Imani’s story, from the summer she turns twenty to the life she builds after. Start with the free prequel, then Book One. After that the story splits into two lives, released side by side.</p>
+  </div>
+</section>
+
+<section class="section section--tight" aria-labelledby="start-here">
+  <div class="wrap">
+    <h2 class="section-title" id="start-here">Start here</h2>
+    <ol class="reading-order">
+      {%- for b in books.pages %}
+      <li class="book-card">
+        <a class="book-card__cover" href="/books/{{ b.slug }}/" tabindex="-1" aria-hidden="true">{{ cover(b) }}</a>
+        <div class="book-card__text">
+          <p class="book-card__step">{{ loop.index }}</p>
+          <p class="eyebrow">{{ b.label }} · {{ b.season }}</p>
+          <h3><a href="/books/{{ b.slug }}/">{{ b.title }}</a></h3>
+          <p>{{ b.blurb[0] }}</p>
+          <p class="status">{{ b.status }}</p>
+        </div>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section section--paper" aria-labelledby="choose">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">Books Two to Eight</p>
+      <h2 id="choose">Then choose a life, or read both</h2>
+      <p>Both series release together, one season at a time. Titles are revealed with each release.</p>
+    </div>
+    <div class="series-cols">
+      {%- for line in ["xavier", "marcus"] %}
+      <div class="series series--{{ line }}">
+        <h3>{{ books.lines[line].name }}</h3>
+        <p>{{ books.lines[line].promise }}</p>
+        <ul class="shelf">
+          {%- for b in books.all | byLine(line) %}
+          <li>{{ cover(b, "cover--mini") }}<span class="shelf__status">{{ b.status }}</span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="notes">
+  <div class="wrap narrow">
+    <h2 class="section-title" id="notes">Content notes</h2>
+    <p>SEASONS is a story about healing, and some of what Imani heals from is hard to read. Across the series you will find:</p>
+    <ul class="notes">
+      {%- for n in books.contentNotes %}
+      <li>{{ n }}</li>
+      {%- endfor %}
+    </ul>
+    <p class="muted">Each book’s page will list its own notes as it releases.</p>
+  </div>
+</section>

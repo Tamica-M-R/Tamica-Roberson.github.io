@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: books.pages
+  size: 1
+  alias: book
+permalink: "/books/{{ book.slug }}/"
+eleventyComputed:
+  title: "{{ book.label }}: {{ book.title }}"
+  description: "{{ book.blurb[0] }}"
+---
+{% from "partials/macros.njk" import cover, signup with context %}
+{% set buy = book.links.amazon or book.links.books2read %}
+
+<section class="page-hero book-hero">
+  <div class="wrap book">
+    <div class="book__cover">{{ cover(book, "cover--large") }}</div>
+    <div class="book__text">
+      <p class="eyebrow">SEASONS · {{ book.label }}</p>
+      <h1>{{ book.title }}</h1>
+      <p class="status">{{ book.status }}</p>
+      {%- for p in book.blurb %}
+      <p{% if loop.first %} class="lede"{% endif %}>{{ p }}</p>
+      {%- endfor %}
+      <div class="actions">
+        {%- if buy %}
+        <a class="btn btn--primary" href="{{ buy }}" target="_blank" rel="noopener">Get the book</a>
+        {%- elif book.line == "prequel" %}
+        <a class="btn btn--primary" href="#get">Get it free</a>
+        {%- else %}
+        <a class="btn btn--primary" href="#get">Tell me when it’s out</a>
+        {%- endif %}
+        <a class="btn btn--ghost" href="/books/">All books</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper section--tight">
+  <div class="wrap narrow">
+    <details class="notes-box">
+      <summary>Content notes for SEASONS</summary>
+      <ul class="notes">
+        {%- for n in books.contentNotes %}
+        <li>{{ n }}</li>
+        {%- endfor %}
+      </ul>
+    </details>
+  </div>
+</section>
+
+<section id="get" class="section section--plum signup-band">
+  <div class="wrap narrow center">
+    {%- if book.line == "prequel" %}
+    <p class="eyebrow eyebrow--light">Free for subscribers</p>
+    <h2>Get <em>Before the Storm</em> in your inbox</h2>
+    <p>Join Letters and the prequel is yours, along with the story behind every chapter.</p>
+    {{ signup("book", "Send me the prequel", true) }}
+    {%- else %}
+    <p class="eyebrow eyebrow--light">Be first to know</p>
+    <h2>Hear the moment it’s out</h2>
+    <p>Letters subscribers get the release date first, plus <em>Before the Storm</em>, the prequel, free.</p>
+    {{ signup("book", "Count me in", true) }}
+    {%- endif %}
+  </div>
+</section>

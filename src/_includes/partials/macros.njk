@@ -1,0 +1,40 @@
+{# The SHE FLUTTER butterfly. Add "butterfly--flutter" to make the wings move. #}
+{% macro butterfly(cls="") %}
+<svg class="butterfly {{ cls }}" viewBox="0 0 120 100" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <g class="wing wing--l">
+    <path d="M56 47C51 31 36 12 20 11C7 10 4 25 12 36C19 45 37 49 56 50"/>
+    <path d="M56 55C45 55 29 59 24 71C20 81 30 89 40 84C50 79 54 66 56 57"/>
+  </g>
+  <g class="wing wing--r">
+    <path d="M64 47C69 31 84 12 100 11C113 10 116 25 108 36C101 45 83 49 64 50"/>
+    <path d="M64 55C75 55 91 59 96 71C100 81 90 89 80 84C70 79 66 66 64 57"/>
+  </g>
+  <path d="M60 39V76"/>
+  <path d="M58.5 39C56.5 31 53 26 48 22M61.5 39C63.5 31 67 26 72 22"/>
+</svg>
+{% endmacro %}
+
+{# A typographic cover in the series template. Real cover art replaces these later. #}
+{% macro cover(book, extra="") %}
+{% set coverTitle = book.title or ("Xavier’s Story" if book.line == "xavier" else "Marcus’s Story") %}
+<div class="cover cover--{{ book.line }} {{ extra }}" role="img" aria-label="Cover: SEASONS, {{ book.label }}, {{ coverTitle }}, by Tamica M. Roberson">
+  <span class="cover__top">SEASONS</span>
+  <span class="cover__label">{{ book.label }}</span>
+  <span class="cover__title">{{ coverTitle }}</span>
+  <span class="cover__rule"></span>
+  <span class="cover__author">Tamica M. Roberson</span>
+</div>
+{% endmacro %}
+
+{# Email signup. Posts to Kit once site.kitFormAction is set; until then it shows a friendly note and sends nothing. #}
+{% macro signup(id, cta="Send me the prequel", dark=false) %}
+<form class="signup{% if dark %} signup--dark{% endif %}" action="{{ site.kitFormAction or '#' }}" method="post" data-signup="{{ 'live' if site.kitFormAction else 'pending' }}">
+  <div class="signup__row">
+    <label class="visually-hidden" for="email-{{ id }}">Email address</label>
+    <input id="email-{{ id }}" type="email" name="email_address" required placeholder="Your email address" autocomplete="email">
+    <button class="btn btn--primary" type="submit">{{ cta }}</button>
+  </div>
+  <p class="signup__note">Free. A Letter every other week. Unsubscribe anytime.</p>
+  <p class="signup__status" role="status" aria-live="polite"></p>
+</form>
+{% endmacro %}

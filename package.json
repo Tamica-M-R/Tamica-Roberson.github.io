@@ -1,0 +1,24 @@
+{
+  "name": "sheflutter",
+  "version": "1.0.0",
+  "description": "sheflutter.com: author site for Tamica M. Roberson and SEASONS",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve --port 8340"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tamica-M-R/Tamica-Roberson.github.io.git"
+  },
+  "author": "Tamica M. Roberson",
+  "license": "UNLICENSED",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Tamica-M-R/Tamica-Roberson.github.io/issues"
+  },
+  "homepage": "https://github.com/Tamica-M-R/Tamica-Roberson.github.io#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  },
+  "private": true
+}

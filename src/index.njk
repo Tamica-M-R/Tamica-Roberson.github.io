@@ -1,0 +1,100 @@
+---
+layout: layouts/base.njk
+bodyClass: page-home
+---
+{% from "partials/macros.njk" import butterfly, cover, signup with context %}
+{% set prequel = books.all[0] %}
+{% set bookOne = books.all[1] %}
+
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow">A novel series by {{ site.author }}</p>
+      <h1 class="hero__title">SEASONS</h1>
+      <p class="hero__tagline">{{ site.tagline }}</p>
+      <p class="lede">A girl raised in the furnace learns to stop bracing, to be loved without being hurt, and to raise children who never have to hold their breath. A novel series inspired by a true story.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="#start">Read the prequel free</a>
+        <a class="btn btn--ghost" href="/books/">Explore the books</a>
+      </div>
+      <p class="hero__note"><span class="dot" aria-hidden="true"></span>{{ site.bookOneStatus }}: <em>Book One, Summer 2002</em></p>
+    </div>
+    <div class="hero__art">
+      {{ butterfly("butterfly--flutter hero__butterfly") }}
+      <a class="hero__cover hero__cover--back" href="/books/{{ prequel.slug }}/">{{ cover(prequel) }}</a>
+      <a class="hero__cover hero__cover--front" href="/books/{{ bookOne.slug }}/">{{ cover(bookOne) }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper" aria-labelledby="two-lives">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">After Book One, the story splits</p>
+      <h2 id="two-lives">One choice. Two lives.</h2>
+      <p>Book One is shared. From Book Two on, SEASONS runs as two series released side by side, one season at a time. Read one life, or read both and decide which you would choose.</p>
+    </div>
+    <div class="lives">
+      <article class="life life--xavier">
+        <p class="life__label">Books Two to Eight</p>
+        <h3>{{ books.lines.xavier.name }}</h3>
+        <p>{{ books.lines.xavier.promise }}</p>
+      </article>
+      <div class="lives__or" aria-hidden="true"><span>or</span></div>
+      <article class="life life--marcus">
+        <p class="life__label">Books Two to Eight</p>
+        <h3>{{ books.lines.marcus.name }}</h3>
+        <p>{{ books.lines.marcus.promise }}</p>
+      </article>
+    </div>
+    <p class="center"><a class="text-link" href="/books/">See the full reading order</a></p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="her-story">
+  <div class="wrap split">
+    <figure class="split__media photo">
+      <img src="/assets/img/tamica-balcony-800.jpg" srcset="/assets/img/tamica-balcony-800.jpg 800w, /assets/img/tamica-balcony-1200.jpg 1200w" sizes="(min-width: 900px) 42vw, 100vw" width="800" height="1155" loading="lazy" alt="Tamica on a balcony in Germany, looking out over autumn trees">
+    </figure>
+    <div class="split__text">
+      <p class="eyebrow">Inspired by a true story</p>
+      <h2 id="her-story">Written from Germany, by a woman who has lived the seasons</h2>
+      <p>Tamica is a thyroid cancer survivor, a proud military spouse and an empty nester rediscovering herself through fashion, travel and storytelling.</p>
+      <p>SEASONS is a novel inspired by her life: the house she grew up in, the work of building a love that lasts, and the women who hold each other up along the way.</p>
+      <a class="text-link" href="/her-story/">Read her story</a>
+    </div>
+  </div>
+</section>
+
+<section id="start" class="section section--plum signup-band" aria-labelledby="start-title">
+  <div class="wrap signup-band__grid">
+    <div class="signup-band__cover">{{ cover(prequel) }}</div>
+    <div>
+      <p class="eyebrow eyebrow--light">Start here, free</p>
+      <h2 id="start-title">Get <em>Before the Storm</em>, the SEASONS prequel</h2>
+      <p>Summer 1999. A bee, a broken screen, and the man who started it all. Join Letters and the prequel is yours, along with the story behind every chapter.</p>
+      {{ signup("home", "Send me the prequel", true) }}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="follow">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">Follow along</p>
+      <h2 id="follow">Style, travel and the story behind the story</h2>
+    </div>
+    <div class="follow">
+      {%- for s in site.social %}
+      <a class="follow__card" href="{{ s.url }}" target="_blank" rel="noopener">
+        <span class="follow__name">{{ s.name }}</span>
+        <span class="follow__handle">{{ s.handle }}</span>
+      </a>
+      {%- endfor %}
+      <a class="follow__card" href="/journal/">
+        <span class="follow__name">Journal</span>
+        <span class="follow__handle">Notes from Germany</span>
+      </a>
+    </div>
+  </div>
+</section>

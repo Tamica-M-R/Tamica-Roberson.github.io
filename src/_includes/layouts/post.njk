@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+---
+{% from "partials/macros.njk" import signup with context %}
+<article class="post">
+  <header class="page-hero page-hero--post">
+    <div class="wrap narrow">
+      <p class="eyebrow"><a href="/journal/">Journal</a></p>
+      <h1>{{ title }}</h1>
+      <p class="post__meta"><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>{% if book %} · From {{ book }}{% endif %}</p>
+    </div>
+  </header>
+  {%- if image %}
+  <figure class="wrap narrow post__image">
+    <img src="{{ image }}" alt="{{ imageAlt or '' }}">
+  </figure>
+  {%- endif %}
+  <div class="section section--tight">
+    <div class="wrap narrow prose">
+      {{ content | safe }}
+    </div>
+  </div>
+  <aside class="section section--plum signup-band">
+    <div class="wrap narrow center">
+      <p class="eyebrow eyebrow--light">Start SEASONS free</p>
+      <h2>Get <em>Before the Storm</em>, the prequel</h2>
+      {{ signup("post", "Send me the prequel", true) }}
+    </div>
+  </aside>
+</article>
