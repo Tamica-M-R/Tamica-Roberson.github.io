@@ -1,15 +1,15 @@
 ---
 layout: layouts/base.njk
 title: Journal
-description: Style, travel, wellness and the real places behind SEASONS, from Tamica M. Roberson in Germany.
+description: Style, travel, wellness and the real places behind SEASONS, from Tamica M. Roberson.
 permalink: /journal/
 ---
-{% from "partials/macros.njk" import butterfly with context %}
+{% from "partials/macros.njk" import logo with context %}
 
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">Journal</p>
-    <h1>Notes from Germany</h1>
+    <h1>Notes from Europe and beyond</h1>
     <p class="lede">Style, travel, wellness, and the real places behind SEASONS.</p>
   </div>
 </section>
@@ -33,7 +33,7 @@ permalink: /journal/
     </ul>
     {%- else %}
     <div class="empty">
-      {{ butterfly("butterfly--flutter empty__mark") }}
+      <span class="empty__mark flutter">{{ logo() }}</span>
       <h2>The first entries are on their way</h2>
       <p>Until then, follow along on Instagram and TikTok, or join Letters to get each new entry in your inbox.</p>
       <div class="actions actions--center">

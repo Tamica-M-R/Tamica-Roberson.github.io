@@ -4,15 +4,16 @@ title: Watch
 description: "Videos from Tamica M. Roberson on Instagram and TikTok, with style, travel in Europe, military spouse life and the story behind SEASONS."
 permalink: /watch/
 ---
+{% from "partials/macros.njk" import polaroids with context %}
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">Watch</p>
-    <h1>Short films from a life in Germany</h1>
+    <h1>Short films from a life in Europe</h1>
     <p class="lede">New videos every week: the places behind the books, outfits straight from the pages, and honest talk about healing, marriage and military life.</p>
   </div>
 </section>
 
-<section class="section section--tight">
+<section class="section section--tight places-band">
   <div class="wrap">
     <div class="follow follow--large">
       {%- for s in site.social %}
@@ -24,6 +25,7 @@ permalink: /watch/
       {%- endfor %}
     </div>
   </div>
+  {{ polaroids(places.watch) }}
 </section>
 
 <section class="section section--paper">

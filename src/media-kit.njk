@@ -4,6 +4,8 @@ title: Media Kit
 description: Bios, photos and logos for Tamica M. Roberson, author of SEASONS, for press, podcasts and book clubs.
 permalink: /media-kit/
 ---
+{% from "partials/macros.njk" import logo with context %}
+
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">Media kit</p>
@@ -15,17 +17,23 @@ permalink: /media-kit/
 <section class="section section--tight">
   <div class="wrap narrow prose">
     <h2>Short bio</h2>
-    <p>{{ site.author }} is the author of SEASONS, a novel series inspired by her life. A thyroid cancer survivor and military spouse, she writes from Germany, where she also shares fashion, travel and the story behind the books as SHE FLUTTER.</p>
+    <p>{{ site.author }} is the author of SEASONS, a novel series inspired by her life. A thyroid cancer survivor and military spouse, she wrote the series across Europe and shares fashion, travel and the story behind the books as SHE FLUTTER.</p>
 
     <h2>Longer bio</h2>
-    <p>{{ site.author }} is a thyroid cancer survivor, a proud military spouse and an empty nester who found herself at a crossroads in Europe. Germany became more than a duty station. It became a place for healing, creativity and growth.</p>
+    <p>{{ site.author }} is a thyroid cancer survivor, a proud military spouse and an empty nester. After cancer, Europe became more than a duty station. It became a place for healing, creativity and growth, and the place SEASONS was written and imagined, from Versailles to Paris to the Bavarian Alps. Germany is home for now.</p>
     <p>SEASONS follows Imani, a girl raised in a hard house, as she learns to be loved without being hurt. After Book One the series splits into two lives, Xavier’s Story and Marcus’s Story, released side by side. Tamica shares the real places, style and moments behind the books as SHE FLUTTER on Instagram and TikTok.</p>
 
-    <h2>Downloads</h2>
+    <h2>Photos</h2>
     <ul class="downloads">
-      <li><a href="/assets/img/tamica-balcony-1200.jpg" download>Photo: Tamica in Germany (JPG)</a></li>
-      <li><a href="/assets/img/brand/she-flutter-logo-purple.png" download>Logo: SHE FLUTTER, purple (PNG)</a></li>
-      <li><a href="/assets/img/brand/she-flutter-logo-plum.png" download>Logo: SHE FLUTTER, plum on cream (PNG)</a></li>
+      <li><a href="/assets/img/tamica-luxembourg-1200.jpg" download>Tamica in Luxembourg (JPG)</a></li>
+      <li><a href="/assets/img/places/versailles-1200.jpg" download>Tamica at Versailles (JPG)</a></li>
+    </ul>
+
+    <h2>Logos</h2>
+    <ul class="logo-downloads">
+      <li><a href="/assets/img/brand/she-flutter-logo-color.png" download>{{ logo("", "color", "") }}<span>Color (PNG)</span></a></li>
+      <li class="logo-downloads__dark"><a href="/assets/img/brand/she-flutter-logo-white.png" download>{{ logo("", "white", "") }}<span>White (PNG)</span></a></li>
+      <li><a href="/assets/img/brand/she-flutter-logo-black.png" download><img class="logo-img" src="/assets/img/brand/she-flutter-logo-black.png" width="830" height="740" alt=""><span>Black (PNG)</span></a></li>
     </ul>
 
     <h2>Contact</h2>

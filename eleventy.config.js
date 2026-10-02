@@ -6,7 +6,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
-  eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
 
   // Dates print in UTC so a post dated 2026-11-20 never shows as Nov 19.
   eleventyConfig.addFilter("readableDate", (d) =>

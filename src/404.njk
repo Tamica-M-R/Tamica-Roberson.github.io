@@ -4,10 +4,10 @@ title: Page not found
 permalink: /404.html
 eleventyExcludeFromCollections: true
 ---
-{% from "partials/macros.njk" import butterfly with context %}
+{% from "partials/macros.njk" import logo with context %}
 <section class="page-hero">
   <div class="wrap narrow center empty">
-    {{ butterfly("butterfly--flutter empty__mark") }}
+    <span class="empty__mark flutter">{{ logo() }}</span>
     <h1>This page fluttered away</h1>
     <p class="lede">The link may be old, or the page may have moved.</p>
     <div class="actions actions--center">

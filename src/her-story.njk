@@ -1,9 +1,11 @@
 ---
 layout: layouts/base.njk
 title: Her Story
-description: Tamica M. Roberson is a thyroid cancer survivor, military spouse and the author of SEASONS, a novel series inspired by her life.
+description: Tamica M. Roberson is a thyroid cancer survivor, military spouse and the author of SEASONS, a novel series inspired by her life and written across Europe.
 permalink: /her-story/
 ---
+{% from "partials/macros.njk" import logo, polaroids with context %}
+
 <section class="page-hero">
   <div class="wrap split split--hero">
     <div class="split__text">
@@ -13,7 +15,7 @@ permalink: /her-story/
       <p>Living in Germany has opened up a world of inspiration, from cobblestone streets to boutique finds, and I’m here to share it all with you.</p>
     </div>
     <figure class="split__media photo">
-      <img src="/assets/img/tamica-balcony-800.jpg" srcset="/assets/img/tamica-balcony-800.jpg 800w, /assets/img/tamica-balcony-1200.jpg 1200w" sizes="(min-width: 900px) 42vw, 100vw" width="800" height="1155" alt="Tamica on a balcony in Germany, looking out over autumn trees">
+      <img src="/assets/img/tamica-luxembourg-800.jpg" srcset="/assets/img/tamica-luxembourg-800.jpg 800w, /assets/img/tamica-luxembourg-1200.jpg 1200w" sizes="(min-width: 900px) 42vw, 100vw" width="800" height="1067" alt="Tamica smiling, seated on a stone wall above a green valley in Luxembourg City">
     </figure>
   </div>
 </section>
@@ -23,14 +25,34 @@ permalink: /her-story/
     <h2>My journey</h2>
     <p>After facing cancer and becoming an empty nester, I found myself at a crossroads. Europe became more than a duty station. It became a canvas for healing, creativity and growth.</p>
     <p>SHE FLUTTER was born from that transformation: a space to style my life with purpose, document my book journey, and connect with other women navigating change.</p>
+  </div>
+</section>
 
+<section class="section places-band" aria-labelledby="where">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">Where the story was written</p>
+      <h2 id="where">From Versailles to the Alps</h2>
+      <p>SEASONS was written and imagined all over Europe. Germany is home for now.</p>
+    </div>
+  </div>
+  {{ polaroids(places.story) }}
+</section>
+
+<section class="section section--paper">
+  <div class="wrap narrow prose">
     <h2>Why SEASONS</h2>
     <p>SEASONS is a novel inspired by my life. It follows Imani, a girl who grew up in the furnace, as she learns to stop bracing, to be loved without being hurt, and to raise children who never have to hold their breath.</p>
     <p>It is a story about breaking a generational curse, and about the everyday work it takes to build a love that lasts.</p>
     <blockquote class="pull">Can a girl raised in the furnace learn to be loved, and to love, without burning anybody?</blockquote>
 
-    <h2>Why SHE FLUTTER?</h2>
-    <p>The name honors the flutter of uncertainty that comes with change, and the strength it takes to rise anyway. It’s about movement, grace, and the quiet power of reinvention.</p>
+    <div class="name-story">
+      {{ logo("name-story__logo", "color", "SHE FLUTTER logo: a butterfly with the words SHE FLUTTER inside") }}
+      <div>
+        <h2>Why SHE FLUTTER?</h2>
+        <p>The name honors the flutter of uncertainty that comes with change, and the strength it takes to rise anyway. It’s about movement, grace, and the quiet power of reinvention.</p>
+      </div>
+    </div>
 
     <div class="actions">
       <a class="btn btn--primary" href="/books/">Meet the books</a>

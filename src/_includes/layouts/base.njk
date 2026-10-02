@@ -1,4 +1,4 @@
-{% from "partials/macros.njk" import butterfly with context %}
+{% from "partials/macros.njk" import logo with context %}
 {%- set pageTitle = (title + " | " + site.brand) if title else (site.brand + " | SEASONS by " + site.author) -%}
 {%- set pageDescription = description or site.description -%}
 <!doctype html>
@@ -17,7 +17,8 @@
   <meta property="og:image" content="{{ site.url }}/assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#3D1C3E">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/img/brand/apple-touch-icon.png">
   <link rel="preload" href="/assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css?v={{ build.version }}">
@@ -29,10 +30,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap site-header__inner">
-      <a class="logo" href="/" aria-label="{{ site.brand }}, home">
-        {{ butterfly("logo__mark") }}
-        <span class="logo__word">SHE FLUTTER</span>
-      </a>
+      <a class="logo" href="/" aria-label="{{ site.brand }}, home">{{ logo("logo__img") }}</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="nav-toggle__bars" aria-hidden="true"></span><span>Menu</span>
       </button>
@@ -54,10 +52,7 @@
   <footer class="site-footer">
     <div class="wrap site-footer__grid">
       <div>
-        <a class="logo logo--light" href="/">
-          {{ butterfly("logo__mark") }}
-          <span class="logo__word">SHE FLUTTER</span>
-        </a>
+        <a class="logo logo--footer" href="/" aria-label="{{ site.brand }}, home">{{ logo("logo__img", "white") }}</a>
         <p class="site-footer__line">SEASONS, a novel series by {{ site.author }}, inspired by a true story.</p>
       </div>
       <nav aria-label="Footer">
