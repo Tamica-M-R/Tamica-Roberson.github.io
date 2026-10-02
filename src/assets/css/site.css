@@ -361,6 +361,12 @@ p { margin: 0 0 1em; }
   content: ""; position: absolute; inset: 18px -18px -18px 18px; z-index: -1;
   border: 1px solid var(--blush-2); border-radius: 200px 200px var(--radius) var(--radius);
 }
+.photo__caption {
+  position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
+  padding: 6px 18px; border-radius: 999px;
+  background: rgba(255, 253, 250, 0.92); box-shadow: var(--shadow-soft);
+  font: italic 600 1.15rem/1.2 var(--serif); color: var(--plum); white-space: nowrap;
+}
 .split__text h2 { max-width: 18ch; }
 @media (max-width: 880px) {
   .split, .split--hero { grid-template-columns: 1fr; }
