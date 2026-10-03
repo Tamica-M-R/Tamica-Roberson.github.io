@@ -32,7 +32,7 @@
 {% endmacro %}
 
 {# Email signup. Posts to Kit once site.kitFormAction is set; until then it shows a friendly note and sends nothing. #}
-{% macro signup(id, cta="Send me the prequel", dark=false) %}
+{% macro signup(id, cta="Send me Book One", dark=false) %}
 <form class="signup{% if dark %} signup--dark{% endif %}" action="{{ site.kitFormAction or '#' }}" method="post" data-signup="{{ 'live' if site.kitFormAction else 'pending' }}">
   <div class="signup__row">
     <label class="visually-hidden" for="email-{{ id }}">Email address</label>

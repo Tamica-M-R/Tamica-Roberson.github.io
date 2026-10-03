@@ -3,8 +3,9 @@ layout: layouts/base.njk
 bodyClass: page-home
 ---
 {% from "partials/macros.njk" import logo, cover, polaroids, signup with context %}
-{% set prequel = books.all[0] %}
-{% set bookOne = books.all[1] %}
+{% set bookOne = books.bookOne %}
+{% set xavierTwo = (books.all | byLine("xavier"))[0] %}
+{% set marcusTwo = (books.all | byLine("marcus"))[0] %}
 
 <section class="hero">
   <div class="wrap hero__grid">
@@ -14,14 +15,15 @@ bodyClass: page-home
       <p class="hero__tagline">{{ site.tagline }}</p>
       <p class="lede">A girl raised in the furnace learns to stop bracing, to be loved without being hurt, and to raise children who never have to hold their breath. A novel series inspired by a true story.</p>
       <div class="actions">
-        <a class="btn btn--primary" href="#start">Read the prequel free</a>
+        <a class="btn btn--primary" href="#start">Read Book One free</a>
         <a class="btn btn--ghost" href="/books/">Explore the books</a>
       </div>
       <p class="hero__note"><span class="dot" aria-hidden="true"></span>{{ site.bookOneStatus }}: <em>Book One, Summer 2002</em></p>
     </div>
     <div class="hero__art">
       <span class="hero__logo flutter">{{ logo() }}</span>
-      <a class="hero__cover hero__cover--back" href="/books/{{ prequel.slug }}/">{{ cover(prequel) }}</a>
+      <a class="hero__cover hero__cover--x" href="/books/">{{ cover(xavierTwo) }}</a>
+      <a class="hero__cover hero__cover--m" href="/books/">{{ cover(marcusTwo) }}</a>
       <a class="hero__cover hero__cover--front" href="/books/{{ bookOne.slug }}/">{{ cover(bookOne) }}</a>
     </div>
   </div>
@@ -65,12 +67,12 @@ bodyClass: page-home
 
 <section id="start" class="section section--plum signup-band" aria-labelledby="start-title">
   <div class="wrap signup-band__grid">
-    <div class="signup-band__cover">{{ cover(prequel) }}</div>
+    <div class="signup-band__cover">{{ cover(bookOne) }}</div>
     <div>
       <p class="eyebrow eyebrow--light">Start here, free</p>
-      <h2 id="start-title">Get <em>Before the Storm</em>, the SEASONS prequel</h2>
-      <p>Summer 1999. A bee, a broken screen, and the man who started it all. Join Letters and the prequel is yours, along with the story behind every chapter.</p>
-      {{ signup("home", "Send me the prequel", true) }}
+      <h2 id="start-title">Get <em>Book One, Summer 2002</em>, free</h2>
+      <p>Galveston, the summer Imani is twenty-three: one summer that splits her life in two. Join Letters and Book One is yours, along with the story behind every chapter.</p>
+      {{ signup("home", "Send me Book One", true) }}
     </div>
   </div>
 </section>

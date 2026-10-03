@@ -282,18 +282,21 @@ p { margin: 0 0 1em; }
 .hero__note em { font-family: var(--serif); font-size: 1.15rem; color: var(--plum); }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 0 5px rgba(168, 69, 106, 0.18); flex: none; }
 
-.hero__art { position: relative; min-height: 520px; }
-.hero__cover { position: absolute; width: min(56%, 250px); text-decoration: none; transition: transform 0.35s ease; }
-.hero__cover--back { right: 0; top: 0; transform: rotate(6deg); }
-.hero__cover--front { left: 0; top: 30%; transform: rotate(-5deg); z-index: 2; }
-.hero__cover--back:hover { transform: rotate(3deg) translateY(-6px); }
-.hero__cover--front:hover { transform: rotate(-2deg) translateY(-6px); }
-.hero__logo { position: absolute; width: 132px; left: 4%; top: -2%; z-index: 3; }
+/* Book One in front, with both Book Twos fanned behind it: one book, two lives. */
+.hero__art { position: relative; min-height: 540px; }
+.hero__cover { position: absolute; width: min(46%, 215px); text-decoration: none; transition: transform 0.35s ease; }
+.hero__cover--x { left: 0; top: 6%; transform: rotate(-9deg); }
+.hero__cover--m { right: 0; top: 6%; transform: rotate(9deg); }
+.hero__cover--front { width: min(54%, 250px); left: 0; right: 0; margin-inline: auto; top: 24%; transform: rotate(-1deg); z-index: 2; }
+.hero__cover--x:hover { transform: rotate(-6deg) translateY(-6px); }
+.hero__cover--m:hover { transform: rotate(6deg) translateY(-6px); }
+.hero__cover--front:hover { transform: rotate(0deg) translateY(-6px); }
+.hero__logo { position: absolute; width: 112px; left: 0; right: 0; margin-inline: auto; top: -5%; z-index: 3; }
 
 @media (max-width: 880px) {
   .hero__grid { grid-template-columns: 1fr; }
-  .hero__art { min-height: 400px; max-width: 360px; margin-inline: auto; width: 100%; }
-  .hero__cover { width: 54%; }
+  .hero__art { min-height: 430px; max-width: 380px; margin-inline: auto; width: 100%; }
+  .hero__logo { width: 92px; }
 }
 
 /* ---------- Covers (typographic stand-ins until real cover art exists) ---------- */

@@ -25,7 +25,7 @@ eleventyComputed:
       <div class="actions">
         {%- if buy %}
         <a class="btn btn--primary" href="{{ buy }}" target="_blank" rel="noopener">Get the book</a>
-        {%- elif book.line == "prequel" %}
+        {%- elif book.line == "shared" %}
         <a class="btn btn--primary" href="#get">Get it free</a>
         {%- else %}
         <a class="btn btn--primary" href="#get">Tell me when it’s out</a>
@@ -51,15 +51,15 @@ eleventyComputed:
 
 <section id="get" class="section section--plum signup-band">
   <div class="wrap narrow center">
-    {%- if book.line == "prequel" %}
+    {%- if book.line == "shared" %}
     <p class="eyebrow eyebrow--light">Free for subscribers</p>
-    <h2>Get <em>Before the Storm</em> in your inbox</h2>
-    <p>Join Letters and the prequel is yours, along with the story behind every chapter.</p>
-    {{ signup("book", "Send me the prequel", true) }}
+    <h2>Get <em>Book One</em> in your inbox</h2>
+    <p>Join Letters and Book One is yours, along with the story behind every chapter.</p>
+    {{ signup("book", "Send me Book One", true) }}
     {%- else %}
     <p class="eyebrow eyebrow--light">Be first to know</p>
     <h2>Hear the moment it’s out</h2>
-    <p>Letters subscribers get the release date first, plus <em>Before the Storm</em>, the prequel, free.</p>
+    <p>Letters subscribers get the release date first, plus <em>Book One</em> free.</p>
     {{ signup("book", "Count me in", true) }}
     {%- endif %}
   </div>

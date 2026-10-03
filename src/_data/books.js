@@ -1,5 +1,5 @@
 // Every book in SEASONS. Edit status lines and add store links here as books release.
-// line: "prequel" | "shared" | "xavier" | "marcus"
+// line: "shared" | "xavier" | "marcus" | "prequel"
 // page: true gives the book its own page at /books/<slug>/
 // links: { amazon: "", books2read: "" }  The first non-empty link becomes the buy button.
 
@@ -11,37 +11,42 @@ const contentNotes = [
   "Gun violence",
 ];
 
-const all = [
-  {
-    slug: "before-the-storm",
-    line: "prequel",
-    label: "Prequel",
-    title: "Before the Storm",
-    season: "Summer 1999",
-    status: "Free for Letters subscribers",
-    page: true,
-    blurb: [
-      "Summer 1999. Imani is twenty when a bee gets into her apartment and a stranger catches it. Marcus Carter is twenty-five. He comes back to fix her screen, and then he keeps coming back.",
-      "Before the Storm is the prequel to SEASONS: how Imani met the man who would teach her what she was worth, and what it cost her to learn it.",
-    ],
-    links: {},
-  },
-  {
-    slug: "book-one-summer-2002",
-    line: "shared",
-    label: "Book One",
-    title: "Summer 2002",
-    season: "Summer 2002",
-    status: "Coming spring 2027",
-    page: true,
-    blurb: [
-      "Summer 2002. Galveston. Imani is twenty-three and has spent her whole life bracing for the next blow. Xavier is twenty-two, quiet and steady, and he says one word like he means it: forever.",
-      "A girl raised in the furnace does not trust anything that warm. And the past is not finished with her yet.",
-      "Book One is where SEASONS begins, and where it splits in two.",
-    ],
-    links: {},
-  },
-];
+// Book One is the free first read, and the way into both series.
+const bookOne = {
+  slug: "book-one-summer-2002",
+  line: "shared",
+  label: "Book One",
+  title: "Summer 2002",
+  season: "Summer 2002",
+  status: "Free for Letters subscribers, early 2027",
+  page: true,
+  blurb: [
+    "Summer 2002. Galveston. Imani is twenty-three and has spent her whole life bracing for the next blow. Xavier is twenty-two, quiet and steady, and he says one word like he means it: forever.",
+    "A girl raised in the furnace does not trust anything that warm. And the past is not finished with her yet.",
+    "Book One is where SEASONS begins, and where it splits in two.",
+  ],
+  links: {},
+};
+
+// The prequel arrives after the series, so readers meet Xavier and Marcus in Book One
+// without it coloring their choice. It stays off the site until then:
+// to introduce it, move it into the `all` list below and set page: true.
+const prequel = {
+  slug: "before-the-storm",
+  line: "prequel",
+  label: "Prequel",
+  title: "Before the Storm",
+  season: "Summer 1999",
+  status: "Arrives after the series",
+  page: false,
+  blurb: [
+    "Summer 1999. Imani is twenty when a bee gets into her apartment and a stranger catches it. Marcus Carter is twenty-five. He comes back to fix her screen, and then he keeps coming back.",
+    "Before the Storm is the prequel to SEASONS: how Imani met the man who would teach her what she was worth, and what it cost her to learn it.",
+  ],
+  links: {},
+};
+
+const all = [bookOne];
 
 const numbers = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
 for (const line of ["xavier", "marcus"]) {
@@ -61,6 +66,8 @@ for (const line of ["xavier", "marcus"]) {
 export default {
   contentNotes,
   all,
+  bookOne,
+  prequel,
   pages: all.filter((b) => b.page),
   lines: {
     xavier: {
