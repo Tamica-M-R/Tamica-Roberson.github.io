@@ -342,6 +342,11 @@ p { margin: 0 0 1em; }
 .cover--shared { --c1: #f6dde3; --c2: #e4a9ba; --band: var(--rose); }
 .cover--xavier { --c1: #f6e2e6; --c2: #ebc3cd; --band: var(--gold); }
 .cover--marcus { --c1: #f2dfe4; --c2: #dcb3c1; --band: var(--blue); }
+/* Two-in-one: both titles, and a band that is half Xavier gold, half Marcus blue. */
+.cover--duo { --c1: #f6e2e7; --c2: #e2b2c2; }
+.cover--duo::after { background: linear-gradient(90deg, var(--gold) 50%, var(--blue) 50%); opacity: 1; }
+.cover--duo .cover__title { font-size: 10.5cqi; line-height: 1.05; }
+.cover__amp { display: block; font-size: 0.7em; opacity: 0.7; margin: 4% 0; }
 .cover--mini { box-shadow: var(--shadow-soft), inset 4px 0 0 rgba(61, 28, 62, 0.12); }
 
 /* ---------- Two lives ---------- */
@@ -486,6 +491,9 @@ p { margin: 0 0 1em; }
 @media (max-width: 420px) {
   .shelf { grid-template-columns: repeat(3, 1fr); }
 }
+.shelf--duo { grid-template-columns: repeat(7, 1fr); gap: 20px 16px; margin-top: 8px; }
+@media (max-width: 880px) { .shelf--duo { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 480px) { .shelf--duo { grid-template-columns: repeat(3, 1fr); } }
 
 .notes { padding-left: 1.2em; margin: 0 0 1em; }
 .notes li { margin-bottom: 0.35em; }

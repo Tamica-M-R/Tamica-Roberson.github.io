@@ -8,12 +8,18 @@
 {% endmacro %}
 
 {# A typographic cover in the series template. Real cover art replaces these later. #}
+{# Two-in-one books (line "duo") show both stories, with a gold and blue band for the two lives. #}
 {% macro cover(book, extra="") %}
-{% set coverTitle = book.title or ("Xavier’s Story" if book.line == "xavier" else "Marcus’s Story") %}
+{% if book.line == "duo" %}{% set coverTitle = "Xavier’s Story and Marcus’s Story" %}
+{% else %}{% set coverTitle = book.title or ("Xavier’s Story" if book.line == "xavier" else "Marcus’s Story") %}{% endif %}
 <div class="cover cover--{{ book.line }} {{ extra }}" role="img" aria-label="Cover: SEASONS, {{ book.label }}, {{ coverTitle }}, by Tamica M. Roberson">
   <span class="cover__top">SEASONS</span>
   <span class="cover__label">{{ book.label }}</span>
+  {%- if book.line == "duo" %}
+  <span class="cover__title">Xavier’s Story<span class="cover__amp">&amp;</span>Marcus’s Story</span>
+  {%- else %}
   <span class="cover__title">{{ coverTitle }}</span>
+  {%- endif %}
   <span class="cover__rule"></span>
   <span class="cover__author">Tamica M. Roberson</span>
 </div>

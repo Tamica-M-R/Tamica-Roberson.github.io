@@ -1,5 +1,5 @@
 // Every book in SEASONS. Edit status lines and add store links here as books release.
-// line: "shared" | "xavier" | "marcus" | "prequel"
+// line: "shared" | "duo" (two-in-one) | "xavier" | "marcus" | "prequel"
 // page: true gives the book its own page at /books/<slug>/
 // links: { amazon: "", books2read: "" }  The first non-empty link becomes the buy button.
 
@@ -34,7 +34,7 @@ const bookOne = {
 const prequel = {
   slug: "before-the-storm",
   line: "prequel",
-  label: "Prequel",
+  label: "Book Nine",
   title: "Before the Storm",
   season: "Summer 1999",
   status: "Arrives after the series",
@@ -46,28 +46,34 @@ const prequel = {
   links: {},
 };
 
-const all = [bookOne];
-
+// Books Two to Eight are two-in-one editions: Xavier's Story and Marcus's Story
+// for the same book number, published together in one book.
 const numbers = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
+const duo = numbers.map((n, i) => ({
+  slug: `book-${i + 2}`,
+  line: "duo",
+  label: `Book ${n}`,
+  title: "",
+  status: i < 4 ? "Coming 2027" : "Coming 2028",
+  page: false,
+  links: {},
+}));
+
+// Each side of a two-in-one book, for artwork that shows the two lives apart.
+const sides = [];
 for (const line of ["xavier", "marcus"]) {
-  numbers.forEach((n, i) => {
-    all.push({
-      slug: `${line}-book-${i + 2}`,
-      line,
-      label: `Book ${n}`,
-      title: "",
-      status: i < 3 ? "Coming 2027" : "Coming 2028",
-      page: false,
-      links: {},
-    });
-  });
+  numbers.forEach((n, i) => sides.push({ slug: `${line}-book-${i + 2}`, line, label: `Book ${n}`, title: "" }));
 }
+
+const all = [bookOne, ...duo];
 
 export default {
   contentNotes,
   all,
   bookOne,
   prequel,
+  duo,
+  sides,
   pages: all.filter((b) => b.page),
   lines: {
     xavier: {

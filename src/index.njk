@@ -4,8 +4,8 @@ bodyClass: page-home
 ---
 {% from "partials/macros.njk" import logo, cover, polaroids, signup with context %}
 {% set bookOne = books.bookOne %}
-{% set xavierTwo = (books.all | byLine("xavier"))[0] %}
-{% set marcusTwo = (books.all | byLine("marcus"))[0] %}
+{% set xavierTwo = (books.sides | byLine("xavier"))[0] %}
+{% set marcusTwo = (books.sides | byLine("marcus"))[0] %}
 
 <section class="hero">
   <div class="wrap hero__grid">
@@ -34,17 +34,17 @@ bodyClass: page-home
     <div class="section__head">
       <p class="eyebrow">After Book One, the story splits</p>
       <h2 id="two-lives">One choice. Two lives.</h2>
-      <p>Book One is shared. From Book Two on, SEASONS runs as two series released side by side, one season at a time. Read one life, or read both and decide which you would choose.</p>
+      <p>Book One is shared. From Book Two on, every book holds both lives: Xavier’s Story and Marcus’s Story, two-in-one. Read one life, or read both and decide which you would choose.</p>
     </div>
     <div class="lives">
       <article class="life life--xavier">
-        <p class="life__label">Books Two to Eight</p>
+        <p class="life__label">In every book, Two to Eight</p>
         <h3>{{ books.lines.xavier.name }}</h3>
         <p>{{ books.lines.xavier.promise }}</p>
       </article>
       <div class="lives__or" aria-hidden="true"><span>or</span></div>
       <article class="life life--marcus">
-        <p class="life__label">Books Two to Eight</p>
+        <p class="life__label">In every book, Two to Eight</p>
         <h3>{{ books.lines.marcus.name }}</h3>
         <p>{{ books.lines.marcus.promise }}</p>
       </article>

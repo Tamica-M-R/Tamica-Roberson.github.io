@@ -38,22 +38,24 @@ permalink: /books/
   <div class="wrap">
     <div class="section__head">
       <p class="eyebrow">Books Two to Eight</p>
-      <h2 id="choose">Then choose a life, or read both</h2>
-      <p>Both series release together, one season at a time. Titles are revealed with each release.</p>
+      <h2 id="choose">Two lives in every book</h2>
+      <p>From Book Two on, every book is a two-in-one: Xavier’s Story and Marcus’s Story, side by side. Read the life you would choose, or read both. Titles are revealed with each release.</p>
     </div>
-    <div class="series-cols">
+    <div class="lives">
       {%- for line in ["xavier", "marcus"] %}
-      <div class="series series--{{ line }}">
+      {%- if not loop.first %}<div class="lives__or" aria-hidden="true"><span>&amp;</span></div>{% endif %}
+      <article class="life life--{{ line }}">
+        <p class="life__label">In every book, Two to Eight</p>
         <h3>{{ books.lines[line].name }}</h3>
         <p>{{ books.lines[line].promise }}</p>
-        <ul class="shelf">
-          {%- for b in books.all | byLine(line) %}
-          <li>{{ cover(b, "cover--mini") }}<span class="shelf__status">{{ b.status }}</span></li>
-          {%- endfor %}
-        </ul>
-      </div>
+      </article>
       {%- endfor %}
     </div>
+    <ul class="shelf shelf--duo">
+      {%- for b in books.duo %}
+      <li>{{ cover(b, "cover--mini") }}<span class="shelf__status">{{ b.status }}</span></li>
+      {%- endfor %}
+    </ul>
   </div>
 </section>
 
