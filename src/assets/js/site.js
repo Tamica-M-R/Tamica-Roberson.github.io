@@ -21,3 +21,22 @@ document.querySelectorAll('form[data-signup="pending"]').forEach((form) => {
     form.reset();
   });
 });
+
+// Press page: "Copy" buttons for the bios. Hidden unless the browser can copy.
+if (navigator.clipboard) {
+  document.querySelectorAll("[data-copy]").forEach((button) => {
+    const source = document.getElementById(button.dataset.copy);
+    if (!source) return;
+    button.hidden = false;
+    button.addEventListener("click", async () => {
+      const text = [...source.querySelectorAll("p")].map((p) => p.textContent.trim()).join("\n\n");
+      try {
+        await navigator.clipboard.writeText(text);
+        button.textContent = "Copied";
+      } catch {
+        button.textContent = "Select and copy";
+      }
+      setTimeout(() => (button.textContent = "Copy"), 2000);
+    });
+  });
+}

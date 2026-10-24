@@ -4,7 +4,8 @@
   "description": "sheflutter.com: author site for Tamica M. Roberson and SEASONS",
   "scripts": {
     "build": "eleventy",
-    "start": "eleventy --serve --port 8340"
+    "start": "eleventy --serve --port 8340",
+    "press-kit": "node scripts/press-kit.mjs"
   },
   "repository": {
     "type": "git",

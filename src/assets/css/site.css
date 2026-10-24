@@ -315,59 +315,93 @@ p { margin: 0 0 1em; }
   .hero__logo { width: 92px; }
 }
 
-/* ---------- Covers (mockup art until real covers exist) ----------
-   Cream bands top and bottom. Two-in-one books split the middle:
-   Xavier's Story in a white tint on the left, Marcus's Story in a black tint on the right. */
+/* ---------- Covers (mockups until each book's real cover is released) ----------
+   The site's own colors. Two-in-one books split down the middle: Xavier's Story in cream on
+   the left, Marcus's Story in plum on the right. Each side has its season and a paned window
+   onto one object from that book; the objects are placeholders for the real cover art.
+   Book One is pink, the prequel plum. */
 .cover {
-  --x-field: linear-gradient(172deg, #ffffff 0%, #ededeb 58%, #d4d3d1 100%);
-  --m-field: linear-gradient(188deg, #6e6c6d 0%, #313031 55%, #141314 100%);
-  --x-ink: #1c1a1b;
-  --m-ink: #f6f4f1;
+  --cream-field: linear-gradient(172deg, #fffdfa 0%, #f8efe9 60%, #f0e0db 100%);
+  --plum-field: linear-gradient(188deg, #5a2d5b 0%, #3d1c3e 60%, #2c122d 100%);
+  --pink-field: linear-gradient(170deg, #f9e6ea 0%, #ecb5c4 60%, #db8ea5 100%);
   position: relative;
   aspect-ratio: 2 / 3;
-  border-radius: 4px 10px 10px 4px;
-  display: grid; grid-template-rows: auto 1fr auto;
+  display: grid;
+  border-radius: 3px 8px 8px 3px;
   text-align: center;
   color: var(--plum);
-  background: var(--cream);
-  box-shadow: var(--shadow), inset 5px 0 0 rgba(61, 28, 62, 0.14);
+  box-shadow: var(--shadow);
   overflow: hidden;
   container-type: inline-size;
 }
-.cover__head { display: flex; flex-direction: column; align-items: center; gap: 2.4cqi; padding: 8cqi 6cqi 5cqi; }
-.cover__series { font: 600 11cqi/1 var(--serif); letter-spacing: 0.26em; margin-right: -0.26em; }
-.cover__label { font: 500 4.2cqi/1 var(--sans); letter-spacing: 0.3em; margin-right: -0.3em; text-transform: uppercase; opacity: 0.8; }
-.cover__foot { display: flex; align-items: center; justify-content: center; gap: 2.6cqi; padding: 4.5cqi 6cqi 6cqi; }
-.cover__mark { display: block; width: 9cqi; color: var(--rose); }
-.cover__mark svg { display: block; width: 100%; height: auto; }
-.cover__author { font: 500 4.4cqi/1 var(--sans); letter-spacing: 0.2em; margin-right: -0.2em; text-transform: uppercase; }
+/* Spine shading and a fine edge, drawn over everything so cream covers keep their edge on cream pages. */
+.cover::after {
+  content: ""; position: absolute; inset: 0; z-index: 3; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 4px 0 0 rgba(44, 18, 45, 0.16), inset 0 0 0 1px rgba(61, 28, 62, 0.32);
+}
+.cover--duo { grid-template-columns: 1fr 1fr; }
+.cover--mini { box-shadow: var(--shadow-soft); }
 
-.cover__field, .cover__half { display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 0; }
-.cover__field { padding: 6cqi 9cqi 6cqi; }
-.cover__half { padding: 5cqi 3cqi 5cqi; }
-.cover__split { position: relative; display: grid; grid-template-columns: 1fr 1fr; }
-.cover__split::after { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-50%); background: rgba(28, 26, 27, 0.35); }
-/* A hairline where the tinted field meets the cream bands, so the white tint keeps its edge. */
-.cover__split, .cover--xavier .cover__field, .cover--marcus .cover__field { border-block: 1px solid rgba(28, 26, 27, 0.22); }
-.cover__half--xavier, .cover--xavier .cover__field { background: var(--x-field); color: var(--x-ink); }
-.cover__half--marcus, .cover--marcus .cover__field { background: var(--m-field); color: var(--m-ink); }
-.cover__season { font: 600 3.6cqi/1.3 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; min-height: 2.6em; display: flex; align-items: flex-start; justify-content: center; }
-.cover__art { display: block; width: 86%; flex: 1; min-height: 0; }
-.cover__art svg { display: block; width: 100%; height: 100%; }
-.cover__story { font: italic 600 6.4cqi/1.05 var(--serif); }
-.cover--xavier .cover__season, .cover--marcus .cover__season { font-size: 4.6cqi; min-height: 0; }
-.cover--xavier .cover__art, .cover--marcus .cover__art { width: 70%; }
-.cover--xavier .cover__story, .cover--marcus .cover__story { font-size: 9cqi; }
+.cover__panel {
+  --frame: var(--plum); --frame-width: 1.6cqi;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-width: 0;
+  padding: 37cqi 2cqi 13cqi; background: var(--cream-field); color: var(--plum);
+}
+.cover__panel--marcus { --frame: var(--cream); background: var(--plum-field); color: var(--cream); }
+.cover__panel--shared { background: var(--pink-field); }
+.cover__panel--prequel { --frame: var(--blush-2); background: var(--plum-field); color: var(--on-plum); }
+.cover:not(.cover--duo) .cover__panel { --frame-width: 2cqi; padding: 35cqi 8cqi 14cqi; }
 
-/* Book One (shared) and Book Nine (prequel): one image, title under it */
-.cover--shared .cover__field { background: linear-gradient(170deg, #f9e6ea 0%, #ecb5c4 60%, #db8ea5 100%); }
-.cover--prequel { background: #2c122d; color: var(--on-plum); }
-.cover--prequel .cover__field { background: linear-gradient(175deg, #5a2d5b, #3d1c3e 70%, #2c122d); }
-.cover--prequel .cover__mark { color: var(--blush-2); }
-.cover__title { margin-top: 4cqi; font: italic 600 12cqi/1 var(--serif); }
-.cover--shared .cover__art, .cover--prequel .cover__art { width: 74%; }
+.cover__season { font: 600 3.4cqi/1.3 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; max-width: 40cqi; min-height: 2.6em; }
+.cover:not(.cover--duo) .cover__season { font-size: 4.2cqi; max-width: none; min-height: 0; }
+.cover__story { font: italic 600 8cqi/0.98 var(--serif); }
+.cover--duo .cover__story { max-width: 34cqi; }
+.cover--xavier .cover__story, .cover--marcus .cover__story { font-size: 10cqi; }
+.cover--shared .cover__story, .cover--prequel .cover__story { font-size: 12cqi; }
 
-.cover--mini { box-shadow: var(--shadow-soft), inset 4px 0 0 rgba(61, 28, 62, 0.14); }
+/* The window: a painted frame and sill, one upright and two cross bars, the object behind the glass,
+   and the season's light outside. */
+.cover__window {
+  position: relative; display: block; flex: none;
+  width: 34cqi; aspect-ratio: 3 / 4; margin-bottom: 2cqi;
+  border: var(--frame-width) solid var(--frame); border-radius: 0.6cqi;
+  background: var(--view);
+}
+.cover:not(.cover--duo) .cover__window { width: 52cqi; }
+.cover__window::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(var(--frame), var(--frame)) 50% 0 / calc(var(--frame-width) * 0.7) 100% no-repeat,
+    linear-gradient(var(--frame), var(--frame)) 0 33.4% / 100% calc(var(--frame-width) * 0.7) no-repeat,
+    linear-gradient(var(--frame), var(--frame)) 0 66.6% / 100% calc(var(--frame-width) * 0.7) no-repeat,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 45%);
+}
+.cover__window::after {
+  content: ""; position: absolute; left: -4.5cqi; right: -4.5cqi; bottom: calc(-1 * var(--frame-width) - 1.8cqi);
+  height: 1.8cqi; border-radius: 0.5cqi; background: var(--frame);
+}
+.cover__art { position: absolute; inset: 6% 4%; display: grid; place-items: center; color: var(--plum); }
+.cover__art svg { display: block; width: 100%; height: auto; max-height: 100%; stroke-width: 2.6; }
+.cover__art svg [fill]:not([fill="none"]):not([fill="currentColor"]) { fill: var(--rose); fill-opacity: 0.45; }
+
+/* The light outside the window, by season (the first season named on that side). */
+.season--spring { --view: linear-gradient(180deg, #fff8fa, #f0c8da); }
+.season--summer { --view: linear-gradient(180deg, #fff3e2, #f2bdb4); }
+.season--fall   { --view: linear-gradient(180deg, #f8e2e4, #cf8299); }
+.season--winter { --view: linear-gradient(180deg, #fbf9fb, #c9b9cb); }
+
+/* SEASONS, the book number and the author run across the cover; on a two-in-one, one copy per half. */
+.cover__over {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  display: flex; flex-direction: column; align-items: center; padding: 9cqi 4cqi 6cqi;
+  color: var(--plum);
+}
+.cover__over--marcus, .cover__over--prequel { color: var(--cream); }
+.cover--duo .cover__over--xavier { clip-path: inset(0 50% 0 0); }
+.cover--duo .cover__over--marcus { clip-path: inset(0 0 0 50%); }
+.cover__series { font: 600 14.5cqi/1 var(--serif); letter-spacing: 0.07em; margin-right: -0.07em; }
+.cover__label { font: 600 3.4cqi/1 var(--sans); letter-spacing: 0.32em; margin: 3cqi -0.32em 0 0; text-transform: uppercase; opacity: 0.85; }
+.cover__author { margin-top: auto; font: 600 3.3cqi/1 var(--sans); letter-spacing: 0.22em; margin-right: -0.22em; text-transform: uppercase; }
 
 /* ---------- Two lives ---------- */
 .lives { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: stretch; margin-bottom: 40px; }
@@ -452,7 +486,7 @@ p { margin: 0 0 1em; }
 }
 
 /* ---------- Follow cards ---------- */
-.follow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.follow { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
 .follow__card {
   display: flex; flex-direction: column; gap: 6px;
   padding: 32px 28px; border-radius: var(--radius);
@@ -530,7 +564,7 @@ p { margin: 0 0 1em; }
   .book__cover { width: 220px; }
 }
 
-/* ---------- Prose (Her Story, Journal, Media kit) ---------- */
+/* ---------- Prose (Her Story, Journal, Press) ---------- */
 .prose { margin-inline: auto; }
 .prose h2 { font-size: clamp(1.9rem, 3.4vw, 2.4rem); margin-top: 1.6em; }
 .prose h2:first-child { margin-top: 0; }
@@ -539,7 +573,6 @@ p { margin: 0 0 1em; }
   margin: 2em 0; padding: 0 0 0 28px; border-left: 3px solid var(--rose);
   font: italic 500 clamp(1.5rem, 3vw, 2rem)/1.3 var(--serif); color: var(--plum);
 }
-.downloads { padding-left: 1.2em; }
 
 .name-story { display: grid; grid-template-columns: 170px 1fr; gap: 32px; align-items: center; margin: 2.5em 0 0; }
 .name-story h2 { margin-top: 0; }
@@ -549,16 +582,64 @@ p { margin: 0 0 1em; }
   .name-story__logo { width: 150px; }
 }
 
-.logo-downloads { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.logo-downloads a {
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-  padding: 20px; border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--paper); text-decoration: none; color: var(--ink); font-size: 0.95rem;
+/* ---------- Press ---------- */
+.press-hero__note { margin: 1.25rem 0 0; color: var(--muted); }
+.press-glance { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.press-glance__photo { width: 100%; max-width: 320px; justify-self: end; }
+.facts { margin: 0; }
+.facts__row { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.facts__row:first-child { border-top: 1px solid var(--line); }
+.facts dt { font-weight: 600; color: var(--plum); }
+.facts dd { margin: 0; }
+@media (max-width: 760px) {
+  .press-glance { grid-template-columns: 1fr; }
+  .press-glance__photo { justify-self: start; max-width: 260px; }
+  .facts__row { grid-template-columns: 1fr; gap: 2px; }
 }
-.logo-downloads a:hover { border-color: var(--blush-2); box-shadow: var(--shadow-soft); }
-.logo-downloads img { max-width: 120px; }
-.logo-downloads__dark a { background: var(--plum); color: var(--on-plum); border-color: var(--plum); }
-@media (max-width: 560px) { .logo-downloads { grid-template-columns: 1fr 1fr; } }
+
+.bio { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 28px; margin-top: 20px; }
+.bio__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+.bio__head h3 { font-size: 1.6rem; margin: 0; }
+.bio__count { font: 500 0.85rem var(--sans); color: var(--muted); margin-left: 8px; }
+.bio__copy {
+  font: 500 0.9rem var(--sans); color: var(--plum); background: transparent; cursor: pointer;
+  border: 1px solid var(--plum); border-radius: 999px; padding: 6px 16px;
+}
+.bio__copy:hover { background: var(--plum); color: var(--on-plum); }
+.bio__text p:last-child { margin-bottom: 0; }
+
+.press-lives { max-width: 900px; margin: 32px auto; }
+.questions { padding-left: 1.4em; }
+.questions li { margin-bottom: 0.6em; }
+
+.press-photos { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 280px)); gap: 28px; }
+.press-photos figure { margin: 0; }
+.press-photos img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-soft); }
+.press-photos figcaption { margin-top: 12px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.press-logos-title { margin-top: 64px; }
+.logo-cards { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.logo-card {
+  display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+  padding: 22px 16px 18px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.logo-card img { height: 96px; width: auto; max-width: 100%; object-fit: contain; }
+.logo-card__name { font-weight: 500; }
+.logo-card__files { display: flex; gap: 8px; }
+.logo-card__files a {
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-decoration: none;
+  color: var(--rose-dark); background: var(--blush); padding: 5px 12px; border-radius: 999px;
+}
+.logo-card__files a:hover { background: var(--rose); color: #fff; }
+.logo-card--dark { background: var(--plum); border-color: var(--plum); color: var(--on-plum); }
+.logo-card--dark .logo-card__files a { background: rgba(251, 246, 240, 0.14); color: var(--on-plum); }
+
+.press-contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 28px; }
+.press-contacts h3 { font-size: 1.5rem; }
+.press-contacts a { color: var(--on-plum); text-underline-offset: 0.2em; }
+.press-contacts a:hover { color: var(--blush-2); }
+.press-contacts ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.press-contacts li span { color: var(--on-plum-muted); margin-left: 6px; }
+@media (max-width: 880px) { .press-contacts { grid-template-columns: 1fr; gap: 28px; } }
 
 /* ---------- Travel snapshots ---------- */
 .places-band { overflow: hidden; }

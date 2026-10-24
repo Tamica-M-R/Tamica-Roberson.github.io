@@ -1,0 +1,181 @@
+---
+layout: layouts/base.njk
+title: Press
+description: Bios, photos, logos and a press kit for Tamica M. Roberson, author of SEASONS, for journalists, podcasts, events and book clubs.
+permalink: /press/
+---
+{%- set kitPdfSize = press.kit.pdf | fileSize %}
+{%- set kitZipSize = press.kit.zip | fileSize %}
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Press</p>
+    <h1>Press and media</h1>
+    <p class="lede">For journalists, podcast hosts, event organizers and book clubs. Bios, photos and logos are free to use with credit to {{ site.author }}.</p>
+    <div class="actions">
+      <a class="btn btn--primary" href="{{ press.kit.pdf }}" download="{{ press.kit.pdfName }}">Press kit (PDF{% if kitPdfSize %}, {{ kitPdfSize }}{% endif %})</a>
+      <a class="btn btn--ghost" href="{{ press.kit.zip }}" download="{{ press.kit.zipName }}">Everything in one ZIP{% if kitZipSize %} ({{ kitZipSize }}){% endif %}</a>
+    </div>
+    <p class="press-hero__note">Interviews and review copies: <a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a></p>
+  </div>
+</section>
+
+<section class="section section--paper section--tight" aria-labelledby="glance">
+  <div class="wrap press-glance">
+    <div>
+      <h2 id="glance" class="section-title">At a glance</h2>
+      <dl class="facts">
+        {%- for f in press.facts %}
+        <div class="facts__row"><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>
+        {%- endfor %}
+        <div class="facts__row"><dt>Press contact</dt><dd><a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a></dd></div>
+      </dl>
+    </div>
+    <figure class="photo press-glance__photo">
+      <img src="{{ press.photos[0].thumb }}" width="800" height="1067" alt="{{ press.photos[0].alt }}">
+      <figcaption class="photo__caption">{{ press.photos[0].caption }}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="bios">
+  <div class="wrap narrow">
+    <h2 id="bios" class="section-title">Bios</h2>
+    <p class="muted">Use whichever length fits, as written or trimmed. <a href="{{ press.kit.bios }}" download="{{ press.kit.biosName }}">Download all three as a text file</a>.</p>
+    {%- set bioList = [
+      { id: "bio-line", name: "One line", text: [press.bios.line] },
+      { id: "bio-short", name: "Short", text: [press.bios.short] },
+      { id: "bio-long", name: "Long", text: press.bios.long }
+    ] %}
+    {%- for b in bioList %}
+    <article class="bio">
+      <header class="bio__head">
+        <h3>{{ b.name }} <span class="bio__count">{{ b.text | wordCount }} words</span></h3>
+        <button class="bio__copy" type="button" data-copy="{{ b.id }}" hidden>Copy</button>
+      </header>
+      <div class="bio__text" id="{{ b.id }}">
+        {%- for p in b.text %}
+        <p>{{ p }}</p>
+        {%- endfor %}
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="section section--paper" aria-labelledby="series">
+  <div class="wrap narrow prose">
+    <h2 id="series">About SEASONS</h2>
+    {%- for p in press.series %}
+    <p>{{ p }}</p>
+    {%- endfor %}
+  </div>
+  <div class="wrap">
+    <div class="lives press-lives">
+      <article class="life life--xavier">
+        <p class="life__label">In every book, Two to Eight</p>
+        <h3>{{ books.lines.xavier.name }}</h3>
+        <p>{{ books.lines.xavier.promise }}</p>
+      </article>
+      <div class="lives__or" aria-hidden="true"><span>or</span></div>
+      <article class="life life--marcus">
+        <p class="life__label">In every book, Two to Eight</p>
+        <h3>{{ books.lines.marcus.name }}</h3>
+        <p>{{ books.lines.marcus.promise }}</p>
+      </article>
+    </div>
+  </div>
+  <div class="wrap narrow prose">
+    <h3>Content notes</h3>
+    <p>The series includes:</p>
+    <ul class="notes">
+      {%- for n in books.contentNotes %}
+      <li>{{ n }}</li>
+      {%- endfor %}
+    </ul>
+    <p class="muted">Final cover art will be posted here before Book One is released.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="angles">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">Story ideas</p>
+      <h2 id="angles">What Tamica can talk about</h2>
+    </div>
+    <ul class="pillars">
+      {%- for a in press.angles %}
+      <li><h3>{{ a.title }}</h3><p>{{ a.text }}</p></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--paper" aria-labelledby="questions">
+  <div class="wrap narrow prose">
+    <h2 id="questions">Suggested interview questions</h2>
+    <ol class="questions">
+      {%- for q in press.questions %}
+      <li>{{ q }}</li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="photos">
+  <div class="wrap">
+    <h2 id="photos" class="section-title">Photos</h2>
+    <p class="muted">Photos courtesy of {{ site.author }}. Print-resolution files are available on request.</p>
+    <ul class="press-photos">
+      {%- for p in press.photos %}
+      <li>
+        <figure>
+          <img src="{{ p.thumb }}" alt="{{ p.alt }}" loading="lazy">
+          <figcaption><strong>{{ p.caption }}</strong> <span class="muted">JPG, {{ p.size }}</span> <a href="{{ p.src }}" download="{{ p.file }}">Download</a></figcaption>
+        </figure>
+      </li>
+      {%- endfor %}
+    </ul>
+
+    <h2 class="section-title press-logos-title">Logos</h2>
+    <p class="muted">Use the color logo on light backgrounds and the white logo on dark ones. Please don’t redraw, recolor or stretch it.</p>
+    <ul class="logo-cards">
+      {%- for l in press.logos %}
+      <li class="logo-card{% if l.dark %} logo-card--dark{% endif %}">
+        <img src="{{ l.preview }}" alt="" loading="lazy">
+        <span class="logo-card__name">{{ l.name }}</span>
+        <span class="logo-card__files">
+          {%- for f in l.files %}
+          <a href="{{ f.src }}" download="{{ f.file }}" aria-label="Download {{ l.name }} as {{ f.label }}">{{ f.label }}</a>
+          {%- endfor %}
+        </span>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--plum" aria-labelledby="contact">
+  <div class="wrap">
+    <h2 id="contact">Get in touch</h2>
+    <div class="press-contacts">
+      <div>
+        <h3>Press, podcasts, events and book clubs</h3>
+        <p><a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a></p>
+        <p>{{ press.reviewCopies }} Email to be added to the list.</p>
+      </div>
+      <div>
+        <h3>Sponsors and brand partnerships</h3>
+        <p><a href="mailto:{{ site.partnershipsEmail }}">{{ site.partnershipsEmail }}</a></p>
+      </div>
+      <div>
+        <h3>Follow along</h3>
+        <ul>
+          {%- for s in site.social %}
+          <li><a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }}</a> <span>{{ s.handle }}</span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

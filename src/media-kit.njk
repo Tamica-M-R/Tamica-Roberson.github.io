@@ -1,46 +1,18 @@
 ---
-layout: layouts/base.njk
-title: Media Kit
-description: Bios, photos and logos for Tamica M. Roberson, author of SEASONS, for press, podcasts and book clubs.
 permalink: /media-kit/
+eleventyExcludeFromCollections: true
 ---
-{% from "partials/macros.njk" import logo with context %}
-
-<section class="page-hero">
-  <div class="wrap">
-    <p class="eyebrow">Media kit</p>
-    <h1>For press, podcasts and book clubs</h1>
-    <p class="lede">Bios, photos and logos are free to use with credit to {{ site.author }}.</p>
-  </div>
-</section>
-
-<section class="section section--tight">
-  <div class="wrap narrow prose">
-    <h2>Short bio</h2>
-    <p>{{ site.author }} is the author of SEASONS, a novel series inspired by her life. A thyroid cancer survivor and military spouse, she wrote the series across the USA and Europe and shares fashion, travel and the story behind the books as SHE FLUTTER.</p>
-
-    <h2>Longer bio</h2>
-    <p>{{ site.author }} is a thyroid cancer survivor, a proud military spouse and an empty nester. After cancer, Europe became more than a duty station. It became a place for healing, creativity and growth. SEASONS was written and imagined all over the USA and Europe, from Los Angeles and Maui to Paris, Lisbon, Capri and the Vatican. Germany is home for now.</p>
-    <p>SEASONS follows Imani, a girl raised in a hard house, as she learns to be loved without being hurt. After Book One the series splits into two lives, Xavier’s Story and Marcus’s Story, told side by side in two-in-one books. Tamica shares the real places, style and moments behind the books as SHE FLUTTER on Instagram and TikTok.</p>
-
-    <h2>Photos</h2>
-    <ul class="downloads">
-      <li><a href="/assets/img/tamica-luxembourg-1200.jpg" download>Tamica in Luxembourg (JPG)</a></li>
-      <li><a href="/assets/img/places/versailles-1200.jpg" download>Tamica at Versailles (JPG)</a></li>
-    </ul>
-
-    <h2>Logos</h2>
-    <ul class="logo-downloads">
-      <li><a href="/assets/img/brand/she-flutter-logo-color.png" download>{{ logo("", "color", "") }}<span>Color (PNG)</span></a></li>
-      <li class="logo-downloads__dark"><a href="/assets/img/brand/she-flutter-logo-white.png" download>{{ logo("", "white", "") }}<span>White (PNG)</span></a></li>
-      <li><a href="/assets/img/brand/she-flutter-logo-black.png" download><img class="logo-img" src="/assets/img/brand/she-flutter-logo-black.png" width="830" height="740" alt=""><span>Black (PNG)</span></a></li>
-    </ul>
-
-    <h2>Contact</h2>
-    {%- if site.contactEmail %}
-    <p>Email <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a> for interviews, podcasts, events and book club visits.</p>
-    {%- else %}
-    <p>For interviews, podcasts, events and book club visits, send a message on <a href="{{ site.social[0].url }}" target="_blank" rel="noopener">Instagram {{ site.social[0].handle }}</a>.</p>
-    {%- endif %}
-  </div>
-</section>
+{#- The media kit moved to /press/. This keeps old links working. -#}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Press | {{ site.brand }}</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{{ site.url }}/press/">
+  <meta http-equiv="refresh" content="0; url=/press/">
+</head>
+<body>
+  <p>The media kit has moved to <a href="/press/">the press page</a>.</p>
+</body>
+</html>

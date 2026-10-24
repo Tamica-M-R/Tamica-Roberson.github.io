@@ -1,3 +1,4 @@
+import { existsSync, statSync } from "node:fs";
 import { HtmlBasePlugin } from "@11ty/eleventy";
 
 export default function (eleventyConfig) {
@@ -13,6 +14,16 @@ export default function (eleventyConfig) {
   );
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("byLine", (books, line) => books.filter((b) => b.line === line));
+
+  // Press page: "48 KB" for a file under src/ (empty until the file exists), and bio word counts.
+  eleventyConfig.addFilter("fileSize", (url) => {
+    if (!existsSync(`src${url}`)) return "";
+    const bytes = statSync(`src${url}`).size;
+    return bytes >= 1e6 ? `${(bytes / 1e6).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1e3))} KB`;
+  });
+  // Covers: "Summer and Fall 2004" -> "summer", the first season named, for the season colors.
+  eleventyConfig.addFilter("seasonKey", (s) => (String(s).toLowerCase().match(/summer|fall|winter|spring/) || ["summer"])[0]);
+  eleventyConfig.addFilter("wordCount", (text) => [].concat(text).join(" ").split(/\s+/).filter(Boolean).length);
 
   // Journal posts: every .md file in src/journal, newest first. Set `draft: true` to hide one.
   eleventyConfig.addCollection("journal", (api) =>

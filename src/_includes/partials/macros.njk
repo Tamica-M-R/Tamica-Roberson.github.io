@@ -7,46 +7,45 @@
 {%- endif -%}
 {% endmacro %}
 
-{# A cover in the series template (mockup art; real covers replace these later). #}
-{# Two-in-one books (line "duo") split down the middle: Xavier's Story in a white tint on the left, #}
-{# Marcus's Story in a black tint on the right, each with its season and one object. #}
+{# A cover in the series template: a mockup until each book's real cover is released. #}
+{# Two-in-one books (line "duo") split down the middle: Xavier's Story in cream on the left, #}
+{# Marcus's Story in plum on the right, each with its season and a window onto one object. #}
+{# The objects in the windows are placeholders for each book's real cover art. #}
 {% macro cover(book, extra="") %}
 {% from "partials/cover-art.njk" import art %}
 {% set storyNames = { xavier: "Xavier’s Story", marcus: "Marcus’s Story" } %}
-{% if book.line == "duo" %}{% set coverTitle = "Xavier’s Story, " + book.seasons.xavier + ", and Marcus’s Story, " + book.seasons.marcus %}
-{% elif book.line == "xavier" or book.line == "marcus" %}{% set coverTitle = storyNames[book.line] + ", " + book.season %}
-{% else %}{% set coverTitle = book.title %}{% endif %}
+{% if book.line == "duo" %}
+  {% set coverTitle = "Xavier’s Story, " + book.seasons.xavier + ", and Marcus’s Story, " + book.seasons.marcus %}
+  {% set panels = [
+    { side: "xavier", season: book.seasons.xavier, art: book.art.xavier, story: storyNames.xavier },
+    { side: "marcus", season: book.seasons.marcus, art: book.art.marcus, story: storyNames.marcus }
+  ] %}
+{% elif book.line == "xavier" or book.line == "marcus" %}
+  {% set coverTitle = storyNames[book.line] + ", " + book.season %}
+  {% set panels = [{ side: book.line, season: book.season, art: book.art, story: storyNames[book.line] }] %}
+{% else %}
+  {% set coverTitle = book.title %}
+  {% set panels = [{ side: book.line, season: "", art: book.art, story: book.title }] %}
+{% endif %}
 <div class="cover cover--{{ book.line }} {{ extra }}" role="img" aria-label="Cover: SEASONS, {{ book.label }}, {{ coverTitle }}, by Tamica M. Roberson">
-  <div class="cover__head">
+  {%- for p in panels %}
+  <div class="cover__panel cover__panel--{{ p.side }} season--{{ (p.season or book.season) | seasonKey }}">
+    {%- if p.season %}
+    <span class="cover__season">{{ p.season }}</span>
+    {%- endif %}
+    <span class="cover__window"><span class="cover__art">{{ art(p.art) }}</span></span>
+    <span class="cover__story">{{ p.story }}</span>
+  </div>
+  {%- endfor %}
+  {#- SEASONS, the book number and the author run across the whole cover. On a two-in-one
+      each copy is clipped to one half, so the ink turns from plum to cream at the seam. #}
+  {%- for p in panels %}
+  <div class="cover__over cover__over--{{ p.side }}" aria-hidden="true">
     <span class="cover__series">SEASONS</span>
     <span class="cover__label">{{ book.label }}</span>
-  </div>
-  {%- if book.line == "duo" %}
-  <div class="cover__split">
-    {%- for side in ["xavier", "marcus"] %}
-    <div class="cover__half cover__half--{{ side }}">
-      <span class="cover__season">{{ book.seasons[side] }}</span>
-      <span class="cover__art">{{ art(book.art[side]) }}</span>
-      <span class="cover__story">{{ storyNames[side] }}</span>
-    </div>
-    {%- endfor %}
-  </div>
-  {%- elif book.line == "xavier" or book.line == "marcus" %}
-  <div class="cover__field">
-    <span class="cover__season">{{ book.season }}</span>
-    <span class="cover__art">{{ art(book.art) }}</span>
-    <span class="cover__story">{{ storyNames[book.line] }}</span>
-  </div>
-  {%- else %}
-  <div class="cover__field">
-    <span class="cover__art">{{ art(book.art) }}</span>
-    <span class="cover__title">{{ book.title }}</span>
-  </div>
-  {%- endif %}
-  <div class="cover__foot">
-    <span class="cover__mark">{% include "partials/butterfly-mark.svg" %}</span>
     <span class="cover__author">Tamica M. Roberson</span>
   </div>
+  {%- endfor %}
 </div>
 {% endmacro %}
 

@@ -1,0 +1,190 @@
+---
+permalink: /press/kit/
+eleventyExcludeFromCollections: true
+---
+{#- The printable press kit: three US Letter pages, printed to PDF by scripts/press-kit.mjs.
+    The words come from src/_data/press.js, the same as the press page. -#}
+{%- set pressUrl = site.url | replace("https://", "") + "/press" -%}
+{%- macro foot(n) -%}
+<footer class="kit-foot">
+  <span>{{ site.author }} · Press kit</span>
+  <span><a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a> · <a href="{{ site.url }}/press/">{{ pressUrl }}</a></span>
+  <span>{{ n }} of 3</span>
+</footer>
+{%- endmacro -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Press kit | {{ site.author }} | {{ site.brand }}</title>
+  <link rel="stylesheet" href="/assets/css/site.css?v={{ build.version }}">
+  <style>
+    @page { size: letter; margin: 0; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: #e4ddd6; margin: 0; font-size: 10.5pt; line-height: 1.5; }
+    .sheet {
+      width: 8.5in; height: 11in; margin: 24px auto; padding: 0.55in 0.65in 0.45in;
+      background: #fff; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      display: flex; flex-direction: column;
+    }
+    @media print {
+      body { background: #fff; }
+      .sheet { margin: 0; box-shadow: none; break-after: page; }
+      .sheet:last-child { break-after: auto; }
+    }
+    .kit-main { flex: 1; }
+    .kit h1, .kit h2, .kit h3 { font-family: var(--serif); color: var(--plum); line-height: 1.1; margin: 0; }
+    .kit p { margin: 0 0 0.75em; }
+    .kit a { color: var(--rose-dark); text-decoration: none; }
+
+    .kit-brand { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 26px; }
+    .kit-brand__logo { display: flex; align-items: center; gap: 12px; }
+    .kit-brand__logo img { width: 54px; height: auto; }
+    .kit-brand__word { font: 600 13pt/1 var(--sans); letter-spacing: 0.16em; }
+    .kit-brand__she { color: var(--logo-pink); }
+    .kit-brand__flutter { color: var(--logo-blue); }
+    .kit-brand__label { font: 600 8.5pt/1 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose-dark); }
+
+    .kit-eyebrow { font: 600 8.5pt/1 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose-dark); margin: 0 0 8px; }
+    .kit h1 { font-size: 40pt; font-weight: 600; margin-bottom: 10px; }
+    .kit-lede { font: italic 500 15pt/1.35 var(--serif); color: var(--plum); max-width: 34em; }
+    .kit h2 { font-size: 21pt; font-weight: 600; margin: 0 0 10px; }
+    .kit h2 + p { margin-top: 0; }
+    .kit-section { margin-top: 22px; }
+
+    .kit-cols { display: grid; grid-template-columns: 1fr 2.55in; gap: 0.4in; align-items: start; margin-top: 20px; }
+    .kit-photo { margin: 0; }
+    .kit-photo img { width: 100%; height: auto; border-radius: 1.3in 1.3in 10px 10px; }
+    .kit-photo figcaption { font: italic 600 11pt var(--serif); color: var(--plum); text-align: center; margin-top: 6px; }
+
+    .kit-facts { margin: 0; display: grid; gap: 0; }
+    .kit-facts div { display: grid; grid-template-columns: 1.25in 1fr; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+    .kit-facts dt { font-weight: 600; color: var(--plum); }
+    .kit-facts dd { margin: 0; }
+
+    .kit-lives { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 16px; }
+    .kit-life { border: 1px solid var(--line); border-top: 5px solid var(--band); border-radius: 10px; padding: 14px 16px; background: var(--cream); }
+    .kit-life--xavier { --band: var(--xavier); }
+    .kit-life--marcus { --band: var(--marcus); }
+    .kit-life h3 { font-size: 15pt; margin-bottom: 4px; }
+    .kit-life p { margin: 0; color: var(--muted); }
+    .kit-notes { margin: 0; padding-left: 1.2em; columns: 2; column-gap: 0.4in; }
+
+    .kit-angles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 0.35in; }
+    .kit-angles h3 { font-size: 13pt; margin-bottom: 2px; }
+    .kit-angles p { margin: 0; color: var(--muted); }
+    .kit-questions { margin: 0; padding-left: 1.3em; display: grid; gap: 5px; }
+
+    .kit-box { margin-top: 24px; padding: 16px 20px; border-radius: 10px; background: var(--plum); color: var(--on-plum); display: grid; grid-template-columns: 1fr 1fr; gap: 6px 0.35in; }
+    .kit-box h3 { color: var(--on-plum); font-size: 13pt; margin-bottom: 4px; }
+    .kit-box p { margin: 0 0 0.5em; color: var(--on-plum-muted); }
+    .kit-box a { color: var(--on-plum); }
+    .kit-box ul { list-style: none; margin: 0; padding: 0; }
+    .kit-box li span { color: var(--on-plum-muted); }
+
+    .kit-foot { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding-top: 10px; font-size: 8.5pt; color: var(--muted); }
+  </style>
+</head>
+<body class="kit">
+
+<section class="sheet">
+  <div class="kit-main">
+    <header class="kit-brand">
+      <span class="kit-brand__logo"><img src="/assets/img/brand/she-flutter-logo-color.png" alt="" width="830" height="740"><span class="kit-brand__word"><span class="kit-brand__she">SHE</span> <span class="kit-brand__flutter">FLUTTER</span></span></span>
+      <span class="kit-brand__label">Press kit</span>
+    </header>
+    <p class="kit-eyebrow">Author of SEASONS</p>
+    <h1>{{ site.author }}</h1>
+    <p class="kit-lede">{{ press.bios.line }}</p>
+    <div class="kit-cols">
+      <div>
+        <h2>At a glance</h2>
+        <dl class="kit-facts">
+          {%- for f in press.facts %}
+          <div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>
+          {%- endfor %}
+          <div><dt>Press contact</dt><dd><a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a></dd></div>
+          <div><dt>Partnerships</dt><dd><a href="mailto:{{ site.partnershipsEmail }}">{{ site.partnershipsEmail }}</a></dd></div>
+        </dl>
+      </div>
+      <figure class="kit-photo">
+        <img src="{{ press.photos[0].src }}" alt="{{ press.photos[0].alt }}" width="1200" height="1600">
+        <figcaption>{{ press.photos[0].caption }}</figcaption>
+      </figure>
+    </div>
+    <div class="kit-section">
+      <h2>Short bio</h2>
+      <p>{{ press.bios.short }}</p>
+    </div>
+  </div>
+  {{ foot(1) }}
+</section>
+
+<section class="sheet">
+  <div class="kit-main">
+    <h2>About the author</h2>
+    {%- for p in press.bios.long %}
+    <p>{{ p }}</p>
+    {%- endfor %}
+    <div class="kit-section">
+      <h2>About SEASONS</h2>
+      {%- for p in press.series %}
+      <p>{{ p }}</p>
+      {%- endfor %}
+      <div class="kit-lives">
+        <div class="kit-life kit-life--xavier"><h3>{{ books.lines.xavier.name }}</h3><p>{{ books.lines.xavier.promise }}</p></div>
+        <div class="kit-life kit-life--marcus"><h3>{{ books.lines.marcus.name }}</h3><p>{{ books.lines.marcus.promise }}</p></div>
+      </div>
+      <p><strong>Content notes.</strong> The series includes:</p>
+      <ul class="kit-notes">
+        {%- for n in books.contentNotes %}
+        <li>{{ n }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </div>
+  {{ foot(2) }}
+</section>
+
+<section class="sheet">
+  <div class="kit-main">
+    <h2>Story ideas</h2>
+    <ul class="kit-angles">
+      {%- for a in press.angles %}
+      <li><h3>{{ a.title }}</h3><p>{{ a.text }}</p></li>
+      {%- endfor %}
+    </ul>
+    <div class="kit-section">
+      <h2>Suggested interview questions</h2>
+      <ol class="kit-questions">
+        {%- for q in press.questions %}
+        <li>{{ q }}</li>
+        {%- endfor %}
+      </ol>
+    </div>
+    <div class="kit-box">
+      <div>
+        <h3>Get in touch</h3>
+        <p>Interviews, podcasts, events and book clubs:<br><a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a></p>
+        <p>Sponsors and brand partnerships:<br><a href="mailto:{{ site.partnershipsEmail }}">{{ site.partnershipsEmail }}</a></p>
+        <p>{{ press.reviewCopies }}</p>
+      </div>
+      <div>
+        <h3>Photos, logos and bios</h3>
+        <p><a href="{{ site.url }}/press/">{{ pressUrl }}</a></p>
+        <h3>Follow along</h3>
+        <ul>
+          {%- for s in site.social %}
+          <li><a href="{{ s.url }}">{{ s.name }}</a> <span>{{ s.handle }}</span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {{ foot(3) }}
+</section>
+
+</body>
+</html>

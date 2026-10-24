@@ -52,7 +52,8 @@ const prequel = {
 // for the same book number, published together in one book.
 const numbers = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
 
-// Cover mockup: each side's season (from its title page) and the object drawn on its half.
+// Cover mockup: each side's season (from its title page) and the object in its window.
+// The objects are placeholders until each book's real cover is released.
 const sideCovers = {
   xavier: [
     { season: "Fall 2002", art: "letters" },

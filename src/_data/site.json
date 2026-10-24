@@ -5,12 +5,16 @@
   "description": "SEASONS, a novel series by Tamica M. Roberson, inspired by her life and written across the USA and Europe. Military spouse, thyroid cancer survivor and storyteller.",
   "tagline": "One summer. Two loves. Two lives.",
   "bookOneStatus": "Free in early 2027",
-  "contactEmail": "",
+  "contactEmail": "hello@sheflutter.com",
+  "pressEmail": "press@sheflutter.com",
+  "partnershipsEmail": "partnerships@sheflutter.com",
   "kitFormAction": "",
   "cloudflareAnalyticsToken": "",
   "social": [
+    { "name": "YouTube", "handle": "@SheFlutter", "url": "https://www.youtube.com/@SheFlutter" },
     { "name": "Instagram", "handle": "@she.flutter", "url": "https://www.instagram.com/she.flutter" },
-    { "name": "TikTok", "handle": "@she.flutter", "url": "https://www.tiktok.com/@she.flutter" }
+    { "name": "TikTok", "handle": "@she.flutter1", "url": "https://www.tiktok.com/@she.flutter1" },
+    { "name": "Facebook", "handle": "She Flutter", "url": "https://www.facebook.com/profile.php?id=61579779284518" }
   ],
   "nav": [
     { "label": "Books", "url": "/books/" },

@@ -1,0 +1,20 @@
+---
+permalink: /press/bios.txt
+eleventyExcludeFromCollections: true
+---
+{{ site.author | safe }}: bios
+{{ site.url }}/press/
+
+ONE LINE
+{{ press.bios.line | safe }}
+
+SHORT
+{{ press.bios.short | safe }}
+
+LONG
+{{ press.bios.long | join("\n\n") | safe }}
+
+Press: {{ site.pressEmail }}
+Partnerships: {{ site.partnershipsEmail }}
+{% for s in site.social %}{{ s.name }}: {{ s.url }}
+{% endfor %}
