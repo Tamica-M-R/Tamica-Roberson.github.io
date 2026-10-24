@@ -1,0 +1,136 @@
+{# Line-art objects for the cover mockups. Each draws in currentColor on a 100 x 100 grid. #}
+{# Mockup art only: final covers will be commissioned from a designer. #}
+{% macro art(name) %}
+<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+{%- if name == "letters" %}
+  {# A bundle of numbered letters, tied with string #}
+  <path d="M23 33 V27 H82 V65 H77"/>
+  <rect x="18" y="33" width="59" height="38" rx="2"/>
+  <path d="M18 33 L47.5 55 L77 33"/>
+  <path d="M47.5 33 V71 M18 52 H77" stroke-width="1.4"/>
+  <path d="M47.5 52 C40 42 33 48 47.5 52 C62 42 69 48 47.5 52 Z"/>
+  <path d="M47.5 52 L41 63 M47.5 52 L54 63"/>
+  <path d="M63 62 H72 M66 66 H72" stroke-width="1.4"/>
+{%- elif name == "peony" %}
+  {# Pink peonies, the flowers Marcus brings #}
+  <path d="M30 42 C25 29 37 19 45 23 C49 13 63 15 65 25 C77 23 81 37 73 45 C77 55 65 61 57 57 C51 65 39 63 37 55 C27 57 23 47 30 42 Z"/>
+  <path d="M39 41 C39 31 51 27 55 35 C63 33 65 45 57 47 C55 53 43 53 41 47 Z"/>
+  <path d="M46 40 C48 36 54 38 52 43"/>
+  <path d="M51 59 C51 71 49 80 47 92"/>
+  <path d="M50 73 C41 68 33 70 28 77 C37 81 45 79 50 73 Z"/>
+  <path d="M49 82 C57 77 65 79 70 85 C61 89 53 87 49 82 Z"/>
+{%- elif name == "list" %}
+  {# The list on the refrigerator: line ten, underlined #}
+  <g transform="rotate(-4 50 50)">
+    <rect x="29" y="20" width="42" height="62" rx="1.5"/>
+    <circle cx="50" cy="20" r="4.5" fill="currentColor"/>
+    <path d="M36 32 H38 M42 32 H64 M36 40 H38 M42 40 H60 M36 48 H38 M42 48 H63 M36 56 H38 M42 56 H58 M36 64 H38 M42 64 H62" stroke-width="1.6"/>
+    <path d="M35 70 H65 M35 73.5 H65" stroke-width="1.4"/>
+  </g>
+{%- elif name == "dress" %}
+  {# A gown on a hanger #}
+  <path d="M50 22 V19 C50 15 56 14 56 18 C56 21 51 21 50 24"/>
+  <path d="M28 31 L50 24 L72 31"/>
+  <path d="M40 31 L38 47 C44 49 56 49 62 47 L60 31"/>
+  <path d="M38 47 C32 62 26 77 21 88 C40 92 60 92 79 88 C74 77 68 62 62 47"/>
+  <path d="M50 49 L49 89 M44 49 L36 89 M56 49 L64 89" stroke-width="1.2"/>
+{%- elif name == "dogtags" %}
+  {# Dog tags on a bead chain, and a wedding band #}
+  <path d="M28 12 C26 38 38 50 45 55 M72 12 C74 38 62 50 55 55" stroke-dasharray="0.1 4" stroke-width="2.8"/>
+  <rect x="35" y="53" width="18" height="29" rx="6" transform="rotate(-10 44 67)"/>
+  <rect x="47" y="55" width="18" height="29" rx="6" transform="rotate(9 56 69)"/>
+  <circle cx="44" cy="58" r="1.6"/>
+  <path d="M40 66 H48 M40 70 H47 M40 74 H46" stroke-width="1.2" transform="rotate(-10 44 67)"/>
+  <circle cx="74" cy="84" r="8"/>
+  <circle cx="74" cy="84" r="5.5" stroke-width="1.4"/>
+{%- elif name == "placemat" %}
+  {# A folded paper placemat with handwriting nobody has read #}
+  <path d="M22 28 H78 V62 L64 76 H22 Z"/>
+  <path d="M78 62 H64 V76"/>
+  <rect x="27" y="33" width="46" height="38" rx="1" stroke-dasharray="1.5 3" stroke-width="1.2"/>
+  <path d="M50 28 V76" stroke-dasharray="3 3" stroke-width="1.2"/>
+  <path d="M31 42 C34 40 37 44 40 42 S45 40 47 42 M31 49 C34 47 37 51 40 49 S44 47 46 49 M54 42 C57 40 60 44 63 42 S67 40 69 42 M54 49 C57 47 60 51 63 49" stroke-width="1.3"/>
+{%- elif name == "shoes" %}
+  {# A pair of tiny first shoes #}
+  <path d="M12 68 C12 53 22 46 30 49 C36 51 38 58 44 61 C51 65 53 74 46 79 H21 C14 79 12 75 12 68 Z"/>
+  <path d="M20 56 C26 60 33 61 39 58"/>
+  <circle cx="36" cy="59.5" r="1.9" fill="currentColor"/>
+  <path d="M50 62 C50 47 60 40 68 43 C74 45 76 52 82 55 C89 59 91 68 84 73 H59 C52 73 50 69 50 62 Z"/>
+  <path d="M58 50 C64 54 71 55 77 52"/>
+  <circle cx="74" cy="53.5" r="1.9" fill="currentColor"/>
+{%- elif name == "cross" %}
+  {# A small cross on a fine chain #}
+  <path d="M26 12 C28 38 42 50 50 53 C58 50 72 38 74 12" stroke-dasharray="0.1 3.4" stroke-width="2.4"/>
+  <circle cx="50" cy="56" r="2.4"/>
+  <path d="M50 59 V90 M40 69 H60" stroke-width="4.5"/>
+{%- elif name == "mirror" %}
+  {# A gilded mirror from the Hall of Mirrors #}
+  <ellipse cx="50" cy="54" rx="24" ry="31"/>
+  <ellipse cx="50" cy="54" rx="19" ry="26" stroke-width="1.4"/>
+  <path d="M38 24 C42 15 58 15 62 24 M45 19 C47 11 53 11 55 19"/>
+  <path d="M41 87 C45 93 55 93 59 87"/>
+  <path d="M40 44 L46 38 M41 53 L53 41" stroke-width="1.3"/>
+{%- elif name == "bee" %}
+  {# The bee necklace #}
+  <path d="M24 10 C26 34 40 44 50 46 C60 44 74 34 76 10" stroke-dasharray="0.1 3.4" stroke-width="2.4"/>
+  <circle cx="50" cy="51" r="4"/>
+  <ellipse cx="38" cy="58" rx="10" ry="6" transform="rotate(-25 38 58)"/>
+  <ellipse cx="62" cy="58" rx="10" ry="6" transform="rotate(25 62 58)"/>
+  <ellipse cx="50" cy="69" rx="9" ry="13"/>
+  <path d="M42 64 H58 M41.5 70 H58.5 M43 76 H57" stroke-width="2.6"/>
+  <path d="M50 82 V87"/>
+{%- elif name == "coat" %}
+  {# The little red coat #}
+  <path d="M38 22 L50 29 L62 22 L76 31 L71 48 L66 46 V86 H34 V46 L29 48 L24 31 Z" fill="#b83a46" fill-opacity="0.9"/>
+  <path d="M38 22 L44 33 L50 29 L56 33 L62 22"/>
+  <path d="M50 30 V86"/>
+  <circle cx="45" cy="44" r="1.5" fill="currentColor"/><circle cx="45" cy="54" r="1.5" fill="currentColor"/><circle cx="45" cy="64" r="1.5" fill="currentColor"/><circle cx="45" cy="74" r="1.5" fill="currentColor"/>
+  <path d="M37 66 H43 M57 66 H63" stroke-width="1.4"/>
+{%- elif name == "suitcase" %}
+  {# A tiny yellow suitcase #}
+  <rect x="25" y="40" width="50" height="38" rx="5" fill="#f1c84b" fill-opacity="0.95"/>
+  <path d="M42 40 V34 C42 31 44 29 47 29 H53 C56 29 58 31 58 34 V40"/>
+  <path d="M36 40 V78 M64 40 V78" stroke-width="1.6"/>
+  <circle cx="33" cy="82" r="2.6"/><circle cx="67" cy="82" r="2.6"/>
+  <path d="M64 50 L72 62 L76 56" stroke-width="1.3"/>
+{%- elif name == "door" %}
+  {# A red door with a key #}
+  <path d="M30 88 V40 C30 24 70 24 70 40 V88 Z" fill="#a83a48" fill-opacity="0.9"/>
+  <path d="M36 52 V42 C36 32 64 32 64 42 V52 Z M36 58 H64 V82 H36 Z" stroke-width="1.3"/>
+  <circle cx="61" cy="70" r="1.8" fill="currentColor"/>
+  <circle cx="22" cy="86" r="5"/>
+  <path d="M27 86 H44 M40 86 V90 M44 86 V91"/>
+{%- elif name == "star" %}
+  {# A gold star, lit at every table #}
+  <path d="M50 22 L57.1 40.3 L76.6 41.3 L61.4 53.7 L66.5 72.7 L50 62 L33.5 72.7 L38.6 53.7 L23.4 41.3 L42.9 40.3 Z" fill="#e6bf5a" fill-opacity="0.95"/>
+  <path d="M50 10 V15 M80 26 L76 29 M20 26 L24 29 M78 80 L74 77 M22 80 L26 77" stroke-width="1.6"/>
+{%- elif name == "sunflower-peony" %}
+  {# Sunflowers and a peony: the two men's flowers, Book One #}
+  <g stroke-width="1.8">
+    {%- for k in range(0, 12) %}
+    <ellipse cx="38" cy="22" rx="3.6" ry="8" transform="rotate({{ k * 30 }} 38 36)"/>
+    {%- endfor %}
+  </g>
+  <circle cx="38" cy="36" r="8" fill="currentColor" fill-opacity="0.85"/>
+  <path d="M38 44 C40 60 42 76 44 92"/>
+  <path d="M41 66 C33 61 25 63 21 70 C29 73 37 71 41 66 Z"/>
+  <g transform="translate(26 30) scale(0.62)">
+    <path d="M30 42 C25 29 37 19 45 23 C49 13 63 15 65 25 C77 23 81 37 73 45 C77 55 65 61 57 57 C51 65 39 63 37 55 C27 57 23 47 30 42 Z" stroke-width="3.2"/>
+    <path d="M39 41 C39 31 51 27 55 35 C63 33 65 45 57 47 C55 53 43 53 41 47 Z" stroke-width="3.2"/>
+  </g>
+  <path d="M60 68 C58 76 54 84 48 92"/>
+{%- elif name == "bee-screen" %}
+  {# The bee at the window screen, summer 1999 #}
+  <rect x="18" y="16" width="64" height="68" rx="1.5"/>
+  <path d="M26 16 V84 M34 16 V84 M42 16 V84 M50 16 V84 M58 16 V84 M66 16 V84 M74 16 V84 M18 24 H82 M18 32 H82 M18 40 H82 M18 48 H82 M18 56 H82 M18 64 H82 M18 72 H82 M18 80 H82" stroke-width="0.6" stroke-opacity="0.55"/>
+  <path d="M82 70 C86 76 86 82 82 84" stroke-width="1.6"/>
+  <g transform="translate(6 -4)">
+    <ellipse cx="38" cy="48" rx="8" ry="5" transform="rotate(-25 38 48)"/>
+    <ellipse cx="54" cy="48" rx="8" ry="5" transform="rotate(25 54 48)"/>
+    <ellipse cx="46" cy="58" rx="7" ry="10" fill="currentColor" fill-opacity="0.18"/>
+    <path d="M40 54 H52 M39.5 59 H52.5 M41 64 H51" stroke-width="2.4"/>
+    <circle cx="46" cy="45" r="3"/>
+  </g>
+{%- endif %}
+</svg>
+{% endmacro %}

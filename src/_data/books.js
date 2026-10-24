@@ -18,6 +18,7 @@ const bookOne = {
   label: "Book One",
   title: "Summer 2002",
   season: "Summer 2002",
+  art: "sunflower-peony",
   status: "Free for Letters subscribers, early 2027",
   page: true,
   blurb: [
@@ -37,6 +38,7 @@ const prequel = {
   label: "Book Nine",
   title: "Before the Storm",
   season: "Summer 1999",
+  art: "bee-screen",
   status: "Arrives after the series",
   page: false,
   blurb: [
@@ -49,11 +51,36 @@ const prequel = {
 // Books Two to Eight are two-in-one editions: Xavier's Story and Marcus's Story
 // for the same book number, published together in one book.
 const numbers = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight"];
+
+// Cover mockup: each side's season (from its title page) and the object drawn on its half.
+const sideCovers = {
+  xavier: [
+    { season: "Fall 2002", art: "letters" },
+    { season: "Winter 2003", art: "list" },
+    { season: "Summer 2003", art: "dogtags" },
+    { season: "Spring 2004", art: "shoes" },
+    { season: "Summer and Fall 2004", art: "mirror" },
+    { season: "Winter 2004 to Summer 2007", art: "coat" },
+    { season: "Summer 2007 to Spring 2026", art: "door" },
+  ],
+  marcus: [
+    { season: "Fall 2002", art: "peony" },
+    { season: "Spring 2003", art: "dress" },
+    { season: "Summer 2003", art: "placemat" },
+    { season: "Fall 2003", art: "cross" },
+    { season: "Spring 2004", art: "bee" },
+    { season: "Summer 2004", art: "suitcase" },
+    { season: "Fall 2004 to Spring 2005", art: "star" },
+  ],
+};
+
 const duo = numbers.map((n, i) => ({
   slug: `book-${i + 2}`,
   line: "duo",
   label: `Book ${n}`,
   title: "",
+  seasons: { xavier: sideCovers.xavier[i].season, marcus: sideCovers.marcus[i].season },
+  art: { xavier: sideCovers.xavier[i].art, marcus: sideCovers.marcus[i].art },
   status: i < 4 ? "Coming 2027" : "Coming 2028",
   page: false,
   links: {},
@@ -62,7 +89,9 @@ const duo = numbers.map((n, i) => ({
 // Each side of a two-in-one book, for artwork that shows the two lives apart.
 const sides = [];
 for (const line of ["xavier", "marcus"]) {
-  numbers.forEach((n, i) => sides.push({ slug: `${line}-book-${i + 2}`, line, label: `Book ${n}`, title: "" }));
+  numbers.forEach((n, i) =>
+    sides.push({ slug: `${line}-book-${i + 2}`, line, label: `Book ${n}`, title: "", ...sideCovers[line][i] })
+  );
 }
 
 const all = [bookOne, ...duo];

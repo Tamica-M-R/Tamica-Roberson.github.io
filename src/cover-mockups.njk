@@ -1,0 +1,54 @@
+---
+layout: layouts/base.njk
+title: Cover mockups
+description: Cover concept mockups for SEASONS. Not linked from the site.
+permalink: /cover-mockups/
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{% from "partials/macros.njk" import cover with context %}
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Mockup, not linked from the site</p>
+    <h1>Cover concepts</h1>
+    <p class="lede">Each two-in-one cover splits down the middle: Xavier’s Story in a white tint, Marcus’s Story in a black tint, each with its season and one object from that book. The objects are placeholder line art for a designer to replace.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <h2 class="section-title">Book One and the two-in-ones</h2>
+    <ul class="mockup-grid">
+      <li>{{ cover(books.bookOne) }}</li>
+      {%- for b in books.duo %}
+      <li>{{ cover(b) }}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="wrap">
+    <h2 class="section-title">Each life on its own</h2>
+    <p>For ads, social posts and the ebook’s “Choose your life” page, each half can stand alone.</p>
+    <ul class="mockup-grid mockup-grid--small">
+      {%- for b in books.sides %}
+      <li>{{ cover(b) }}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="section-title">Thumbnail test</h2>
+    <p>About the size most readers first see a cover on Amazon.</p>
+    <ul class="mockup-grid mockup-grid--thumb">
+      <li>{{ cover(books.bookOne) }}</li>
+      {%- for b in books.duo %}
+      <li>{{ cover(b) }}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>

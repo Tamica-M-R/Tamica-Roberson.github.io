@@ -1,6 +1,7 @@
 /* ==========================================================================
    SHE FLUTTER · sheflutter.com
-   Palette: cream paper, deep plum ink, Imani's pink, Xavier gold, Marcus blue.
+   Palette: cream paper, deep plum ink, Imani's pink; Xavier's Story in a white
+   tint, Marcus's Story in a black tint.
    Fonts are self-hosted (no Google requests, so no cookie banner is needed).
    ========================================================================== */
 
@@ -38,11 +39,11 @@
   --line: #e9ddd7;
   --rose: #a8456a;
   --rose-dark: #8e3657;
-  --gold: #c99a3a;
-  --gold-ink: #7a5a12;
-  --gold-soft: #f5ead0;
-  --blue: #24426b;
-  --blue-soft: #e0e8f2;
+  /* The two lives: Xavier's Story in a white tint, Marcus's Story in a black tint. */
+  --xavier: #c9c7c4;
+  --xavier-ink: #5e5b5c;
+  --marcus: #262425;
+  --marcus-ink: #262425;
   --on-plum: #fbf6f0;
   --on-plum-muted: #d9c3cf;
   /* The logo's own colors, used only for the SHE FLUTTER wordmark. */
@@ -314,40 +315,59 @@ p { margin: 0 0 1em; }
   .hero__logo { width: 92px; }
 }
 
-/* ---------- Covers (typographic stand-ins until real cover art exists) ---------- */
+/* ---------- Covers (mockup art until real covers exist) ----------
+   Cream bands top and bottom. Two-in-one books split the middle:
+   Xavier's Story in a white tint on the left, Marcus's Story in a black tint on the right. */
 .cover {
-  --c1: #f3d3dc; --c2: #e7aebf; --band: var(--rose);
+  --x-field: linear-gradient(172deg, #ffffff 0%, #ededeb 58%, #d4d3d1 100%);
+  --m-field: linear-gradient(188deg, #6e6c6d 0%, #313031 55%, #141314 100%);
+  --x-ink: #1c1a1b;
+  --m-ink: #f6f4f1;
   position: relative;
   aspect-ratio: 2 / 3;
-  border-radius: 6px 12px 12px 6px;
-  padding: 12% 10% 10%;
-  display: flex; flex-direction: column; align-items: center; text-align: center;
+  border-radius: 4px 10px 10px 4px;
+  display: grid; grid-template-rows: auto 1fr auto;
+  text-align: center;
   color: var(--plum);
-  background: linear-gradient(160deg, var(--c1), var(--c2));
-  box-shadow: var(--shadow), inset 6px 0 0 rgba(61, 28, 62, 0.12);
+  background: var(--cream);
+  box-shadow: var(--shadow), inset 5px 0 0 rgba(61, 28, 62, 0.14);
   overflow: hidden;
   container-type: inline-size;
 }
-.cover::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 9%;
-  background: var(--band); opacity: 0.9;
-}
-.cover__top { font: 600 9cqi/1 var(--sans); letter-spacing: 0.32em; margin-right: -0.32em; }
-.cover__label { margin-top: 18%; font: 500 5.4cqi/1 var(--sans); letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.85; }
-.cover__title { margin-top: 6%; font: italic 600 14cqi/1.02 var(--serif); }
-.cover__rule { margin-top: 10%; width: 22%; height: 1px; background: currentColor; opacity: 0.5; }
-.cover__author { margin-top: auto; margin-bottom: 14%; font: 500 5.6cqi/1.2 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; }
+.cover__head { display: flex; flex-direction: column; align-items: center; gap: 2.4cqi; padding: 8cqi 6cqi 5cqi; }
+.cover__series { font: 600 11cqi/1 var(--serif); letter-spacing: 0.26em; margin-right: -0.26em; }
+.cover__label { font: 500 4.2cqi/1 var(--sans); letter-spacing: 0.3em; margin-right: -0.3em; text-transform: uppercase; opacity: 0.8; }
+.cover__foot { display: flex; align-items: center; justify-content: center; gap: 2.6cqi; padding: 4.5cqi 6cqi 6cqi; }
+.cover__mark { display: block; width: 9cqi; color: var(--rose); }
+.cover__mark svg { display: block; width: 100%; height: auto; }
+.cover__author { font: 500 4.4cqi/1 var(--sans); letter-spacing: 0.2em; margin-right: -0.2em; text-transform: uppercase; }
 
-.cover--prequel { --c1: #5a2d5b; --c2: #2c122d; --band: var(--blush-2); color: var(--on-plum); }
-.cover--shared { --c1: #f6dde3; --c2: #e4a9ba; --band: var(--rose); }
-.cover--xavier { --c1: #f6e2e6; --c2: #ebc3cd; --band: var(--gold); }
-.cover--marcus { --c1: #f2dfe4; --c2: #dcb3c1; --band: var(--blue); }
-/* Two-in-one: both titles, and a band that is half Xavier gold, half Marcus blue. */
-.cover--duo { --c1: #f6e2e7; --c2: #e2b2c2; }
-.cover--duo::after { background: linear-gradient(90deg, var(--gold) 50%, var(--blue) 50%); opacity: 1; }
-.cover--duo .cover__title { font-size: 10.5cqi; line-height: 1.05; }
-.cover__amp { display: block; font-size: 0.7em; opacity: 0.7; margin: 4% 0; }
-.cover--mini { box-shadow: var(--shadow-soft), inset 4px 0 0 rgba(61, 28, 62, 0.12); }
+.cover__field, .cover__half { display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 0; }
+.cover__field { padding: 6cqi 9cqi 6cqi; }
+.cover__half { padding: 5cqi 3cqi 5cqi; }
+.cover__split { position: relative; display: grid; grid-template-columns: 1fr 1fr; }
+.cover__split::after { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-50%); background: rgba(28, 26, 27, 0.35); }
+/* A hairline where the tinted field meets the cream bands, so the white tint keeps its edge. */
+.cover__split, .cover--xavier .cover__field, .cover--marcus .cover__field { border-block: 1px solid rgba(28, 26, 27, 0.22); }
+.cover__half--xavier, .cover--xavier .cover__field { background: var(--x-field); color: var(--x-ink); }
+.cover__half--marcus, .cover--marcus .cover__field { background: var(--m-field); color: var(--m-ink); }
+.cover__season { font: 600 3.6cqi/1.3 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; min-height: 2.6em; display: flex; align-items: flex-start; justify-content: center; }
+.cover__art { display: block; width: 86%; flex: 1; min-height: 0; }
+.cover__art svg { display: block; width: 100%; height: 100%; }
+.cover__story { font: italic 600 6.4cqi/1.05 var(--serif); }
+.cover--xavier .cover__season, .cover--marcus .cover__season { font-size: 4.6cqi; min-height: 0; }
+.cover--xavier .cover__art, .cover--marcus .cover__art { width: 70%; }
+.cover--xavier .cover__story, .cover--marcus .cover__story { font-size: 9cqi; }
+
+/* Book One (shared) and Book Nine (prequel): one image, title under it */
+.cover--shared .cover__field { background: linear-gradient(170deg, #f9e6ea 0%, #ecb5c4 60%, #db8ea5 100%); }
+.cover--prequel { background: #2c122d; color: var(--on-plum); }
+.cover--prequel .cover__field { background: linear-gradient(175deg, #5a2d5b, #3d1c3e 70%, #2c122d); }
+.cover--prequel .cover__mark { color: var(--blush-2); }
+.cover__title { margin-top: 4cqi; font: italic 600 12cqi/1 var(--serif); }
+.cover--shared .cover__art, .cover--prequel .cover__art { width: 74%; }
+
+.cover--mini { box-shadow: var(--shadow-soft), inset 4px 0 0 rgba(61, 28, 62, 0.14); }
 
 /* ---------- Two lives ---------- */
 .lives { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: stretch; margin-bottom: 40px; }
@@ -358,11 +378,11 @@ p { margin: 0 0 1em; }
   border-radius: var(--radius);
   padding: 36px 32px;
 }
-.life--xavier { --band: var(--gold); }
-.life--marcus { --band: var(--blue); }
+.life--xavier { --band: var(--xavier); }
+.life--marcus { --band: var(--marcus); }
 .life__label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.6rem; }
-.life--xavier .life__label { color: var(--gold-ink); }
-.life--marcus .life__label { color: var(--blue); }
+.life--xavier .life__label { color: var(--xavier-ink); }
+.life--marcus .life__label { color: var(--marcus-ink); }
 .life h3 { font-size: 2.1rem; }
 .life p:last-child { margin: 0; color: var(--muted); }
 .lives__or { display: grid; place-items: center; }
@@ -458,7 +478,7 @@ p { margin: 0 0 1em; }
   background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
   padding: clamp(24px, 4vw, 40px);
 }
-.book-card__cover { display: block; }
+.book-card__cover { display: block; text-decoration: none; }
 .book-card__text { position: relative; }
 .book-card__step {
   position: absolute; right: 0; top: -6px; margin: 0;
@@ -478,8 +498,8 @@ p { margin: 0 0 1em; }
   background: var(--cream); border: 1px solid var(--line); border-top: 6px solid var(--band);
   border-radius: var(--radius); padding: 32px;
 }
-.series--xavier { --band: var(--gold); }
-.series--marcus { --band: var(--blue); }
+.series--xavier { --band: var(--xavier); }
+.series--marcus { --band: var(--marcus); }
 .series h3 { font-size: 2rem; }
 .series > p { color: var(--muted); }
 .shelf { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 12px; }
@@ -631,3 +651,9 @@ p { margin: 0 0 1em; }
 @media (max-width: 760px) {
   .site-footer__grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Cover mockups page (/cover-mockups/, not linked) ---------- */
+.mockup-grid { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 40px 32px; }
+.mockup-grid--small { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 28px 20px; }
+.mockup-grid--thumb { grid-template-columns: repeat(auto-fill, 100px); gap: 20px; }
+.mockup-note { display: block; margin-top: 12px; font-size: 0.85rem; color: var(--muted); }
