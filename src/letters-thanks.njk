@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+title: You’re in
+description: Thank you for joining Letters from Tamica M. Roberson.
+permalink: /letters/thanks/
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{#- Where Kit sends new readers after they tap the confirm link in their email. #}
+{% from "partials/macros.njk" import logo, subscribe with context %}
+<section class="page-hero">
+  <div class="wrap narrow center empty">
+    <span class="empty__mark flutter">{{ logo() }}</span>
+    <p class="eyebrow">Letters</p>
+    <h1>You’re in!</h1>
+    <p class="lede">Thank you for joining Letters. You’ll hear from me every other week. When <em>SEASONS</em> Book One is ready in early 2027, it comes to you free.</p>
+    <p>So my Letters never land in spam, add <a href="mailto:letters@sheflutter.com">letters@sheflutter.com</a> to your contacts.</p>
+    <div class="actions actions--center">
+      <a class="btn btn--primary" href="/her-story/">Read my story</a>
+      {{ subscribe("btn--ghost") }}
+    </div>
+  </div>
+</section>

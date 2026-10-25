@@ -9,8 +9,41 @@ if (toggle && nav) {
   });
 }
 
-// Signup forms. Until the Kit form address is set in src/_data/site.json,
-// forms show a friendly note and send nothing anywhere.
+// Signup forms. With the Kit form address set in src/_data/site.json, they sign
+// people up with Kit right on the page; nothing from Kit loads until someone
+// presses the button. If Kit answers with anything unexpected (a spam check,
+// say), the form posts to Kit the ordinary way and Kit's own page takes over.
+document.querySelectorAll('form[data-signup="live"]').forEach((form) => {
+  const status = form.querySelector(".signup__status");
+  const button = form.querySelector('button[type="submit"]');
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    button.disabled = true;
+    status.textContent = "Sending…";
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+      const result = await response.json();
+      if (result.status === "success") {
+        form.classList.add("is-done");
+        status.textContent = "Almost there! Check your email and tap the link to confirm.";
+      } else if (result.status === "failed") {
+        status.textContent = "Please check your email address and try again.";
+      } else {
+        form.submit();
+      }
+    } catch {
+      form.submit();
+    } finally {
+      button.disabled = false;
+    }
+  });
+});
+
+// Until then, forms show a friendly note and send nothing anywhere.
 document.querySelectorAll('form[data-signup="pending"]').forEach((form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();

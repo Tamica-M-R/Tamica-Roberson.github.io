@@ -8,7 +8,7 @@
   "contactEmail": "hello@sheflutter.com",
   "pressEmail": "press@sheflutter.com",
   "partnershipsEmail": "partnerships@sheflutter.com",
-  "kitFormAction": "",
+  "kitFormAction": "https://app.kit.com/forms/10095724/subscriptions",
   "cloudflareAnalyticsToken": "",
   "social": [
     { "name": "YouTube", "handle": "@SheFlutter", "url": "https://www.youtube.com/@SheFlutter" },
