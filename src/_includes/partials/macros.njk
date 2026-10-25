@@ -61,6 +61,25 @@
 </div>
 {% endmacro %}
 
+{# A YouTube video that loads only when someone presses play (site.js swaps in the player). #}
+{# Until then it's a saved thumbnail, so the page doesn't contact YouTube. Without JavaScript it links to YouTube. #}
+{% macro video(v, cls="") %}
+<div class="video {{ cls }}">
+  <a class="video__frame" href="https://www.youtube.com/watch?v={{ v.id }}" data-video="{{ v.id }}" data-title="{{ v.title }}" target="_blank" rel="noopener">
+    {%- if v.thumb %}
+    <img src="{{ v.thumb }}" alt="" loading="lazy">
+    {%- endif %}
+    <span class="video__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6.5v11l9-5.5z" fill="currentColor"/></svg></span>
+    <span class="visually-hidden">Play: {{ v.title }}</span>
+  </a>
+</div>
+{% endmacro %}
+
+{# The YouTube subscribe button. #}
+{% macro subscribe(cls="btn--primary") %}
+<a class="btn {{ cls }} btn--youtube" href="{{ youtube.subscribeUrl }}" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg>Subscribe on YouTube</a>
+{% endmacro %}
+
 {# Email signup. Posts to Kit once site.kitFormAction is set; until then it shows a friendly note and sends nothing. #}
 {% macro signup(id, cta="Send me Book One", dark=false) %}
 <form class="signup{% if dark %} signup--dark{% endif %}" action="{{ site.kitFormAction or '#' }}" method="post" data-signup="{{ 'live' if site.kitFormAction else 'pending' }}">

@@ -4,7 +4,7 @@ title: Watch
 description: "Videos from Tamica M. Roberson on YouTube, Instagram, TikTok and Facebook, with style, travel in Europe, military spouse life and the story behind SEASONS."
 permalink: /watch/
 ---
-{% from "partials/macros.njk" import polaroids with context %}
+{% from "partials/macros.njk" import polaroids, video, subscribe with context %}
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">Watch</p>
@@ -13,8 +13,61 @@ permalink: /watch/
   </div>
 </section>
 
-<section class="section section--tight places-band">
+<section class="section section--tight" aria-labelledby="meet">
+  <div class="wrap watch-intro">
+    {%- if youtube.featured %}
+    {{ video(youtube.featured, "video--feature") }}
+    {%- else %}
+    <div class="video video--feature video--soon">
+      <img src="/assets/img/tamica-luxembourg-1200.jpg" width="1200" height="1600" alt="Tamica smiling, seated on a stone wall above a green valley in Luxembourg">
+      <span class="video__soon">Coming soon</span>
+    </div>
+    {%- endif %}
+    <div class="watch-intro__text">
+      <p class="eyebrow">Start here</p>
+      <h2 id="meet">Meet Tamica</h2>
+      <p>Her story, her journey, the meaning behind SHE FLUTTER, and why she wrote SEASONS.</p>
+      {%- if not youtube.featured %}
+      <p class="muted">Tamica’s introduction is coming soon. Subscribe to see it first.</p>
+      {%- endif %}
+      <div class="actions">{{ subscribe() }}</div>
+      {%- if youtube.featured or youtube.latest.length %}
+      <p class="video-note">Videos play from YouTube when you press play.</p>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+
+{%- if youtube.latest.length %}
+<section class="section section--paper" aria-labelledby="latest">
   <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">On YouTube</p>
+      <h2 id="latest">Latest videos</h2>
+    </div>
+    <ul class="videos">
+      {%- for v in youtube.latest %}
+      <li class="video-card">
+        {{ video(v) }}
+        <h3 class="video-card__title">{{ v.title }}</h3>
+        <p class="video-card__meta">{% if v.short %}Short · {% endif %}{{ v.published | readableDate }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+    <div class="actions actions--center">
+      {{ subscribe() }}
+      <a class="btn btn--ghost" href="{{ youtube.channelUrl }}" target="_blank" rel="noopener">See all on YouTube</a>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section section--tight places-band" aria-labelledby="follow">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">Follow along</p>
+      <h2 id="follow">Wherever you watch</h2>
+    </div>
     <div class="follow follow--large">
       {%- for s in site.social %}
       <a class="follow__card" href="{{ s.url }}" target="_blank" rel="noopener">

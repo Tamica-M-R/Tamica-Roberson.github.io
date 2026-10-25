@@ -40,3 +40,16 @@ if (navigator.clipboard) {
     });
   });
 }
+
+// Watch page: swap a video's thumbnail for YouTube's player only when someone presses play.
+document.querySelectorAll("[data-video]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    const player = document.createElement("iframe");
+    player.src = `https://www.youtube-nocookie.com/embed/${link.dataset.video}?autoplay=1&rel=0`;
+    player.title = link.dataset.title;
+    player.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    player.allowFullscreen = true;
+    link.replaceWith(player);
+  });
+});

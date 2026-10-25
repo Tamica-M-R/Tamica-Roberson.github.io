@@ -1,4 +1,5 @@
-import { existsSync, statSync } from "node:fs";
+import { cpSync, existsSync, statSync } from "node:fs";
+import { join } from "node:path";
 import { HtmlBasePlugin } from "@11ty/eleventy";
 
 export default function (eleventyConfig) {
@@ -7,6 +8,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  // YouTube thumbnails saved by src/_data/youtube.js. They download during the build,
+  // too late for a passthrough copy, so they're copied in once the build is done.
+  eleventyConfig.on("eleventy.after", ({ directories }) => {
+    if (existsSync(".cache/youtube")) cpSync(".cache/youtube", join(directories.output, "assets/video"), { recursive: true });
+  });
 
   // Dates print in UTC so a post dated 2026-11-20 never shows as Nov 19.
   eleventyConfig.addFilter("readableDate", (d) =>

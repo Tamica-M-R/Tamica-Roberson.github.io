@@ -1,9 +1,12 @@
 name: Publish site
 
 # Every change pushed to the main branch rebuilds and publishes sheflutter.com.
+# It also rebuilds every morning so new YouTube videos appear on the Watch page.
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "0 6 * * *"
   workflow_dispatch:
 
 permissions:
