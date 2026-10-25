@@ -200,6 +200,9 @@ p { margin: 0 0 1em; }
 .logo__word { font: 600 1.2rem/1 var(--sans); letter-spacing: 0.16em; white-space: nowrap; }
 .logo__she { color: var(--logo-pink); }
 .logo__flutter { color: var(--logo-blue); }
+/* In the header, Tamica's name sits under the wordmark. */
+.logo__text { display: flex; flex-direction: column; gap: 8px; }
+.logo__name { font: 500 0.74rem/1 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap; color: var(--ink); }
 .logo--footer { gap: 18px; }
 .logo--footer .logo__img { height: 110px; }
 .logo--footer .logo__word { font-size: 1.45rem; }
@@ -208,6 +211,8 @@ p { margin: 0 0 1em; }
   .logo { gap: 10px; }
   .logo .logo__img { height: 54px; }
   .logo__word { font-size: 1rem; letter-spacing: 0.12em; }
+  .logo__text { gap: 6px; }
+  .logo__name { font-size: 0.62rem; letter-spacing: 0.1em; }
 }
 
 .site-nav { display: flex; align-items: center; gap: 28px; }
