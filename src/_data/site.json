@@ -2,7 +2,7 @@
   "brand": "SHE FLUTTER",
   "author": "Tamica M. Roberson",
   "url": "https://sheflutter.com",
-  "description": "SEASONS, a novel series by Tamica M. Roberson, inspired by her life and written across the USA and Europe. Military spouse, thyroid cancer survivor and storyteller.",
+  "description": "Tamica M. Roberson: thyroid cancer survivor, military spouse and storyteller, sharing style, travel and SEASONS, a novel series inspired by her life.",
   "tagline": "One summer. Two loves. Two lives.",
   "bookOneStatus": "Free in early 2027",
   "contactEmail": "hello@sheflutter.com",
@@ -17,10 +17,10 @@
     { "name": "Facebook", "handle": "She Flutter", "url": "https://www.facebook.com/profile.php?id=61579779284518" }
   ],
   "nav": [
-    { "label": "Books", "url": "/books/" },
     { "label": "Her Story", "url": "/her-story/" },
-    { "label": "Journal", "url": "/journal/" },
     { "label": "Watch", "url": "/watch/" },
+    { "label": "Journal", "url": "/journal/" },
+    { "label": "Books", "url": "/books/" },
     { "label": "Letters", "url": "/letters/" }
   ]
 }

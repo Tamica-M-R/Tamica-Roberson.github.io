@@ -1,9 +1,10 @@
-// The Watch page's videos, read from the channel's public feed each time the site builds.
+// The site's YouTube videos, read from the channel's public feed each time the site builds.
 // The site also rebuilds every morning, so a new upload appears within a day.
 //
-// To feature Tamica's introduction at the top of the Watch page, paste its video ID into
+// To feature Tamica's introduction at the top of the Home page, paste its video ID into
 // `intro` below: the part after "v=" in https://www.youtube.com/watch?v=VIDEO_ID
-// (the video must be public). Until then the page says it's coming soon.
+// (the video must be public). Until then the Home page says it's coming soon.
+// Every other upload shows on the Watch page (newest first) and the latest three on Home.
 //
 // Thumbnails are saved with the site, so a visitor's browser doesn't contact YouTube
 // until they press play.
@@ -13,7 +14,7 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 const channelId = "UCVcJB1ZYfNWsM0pddp96oKQ";
 const channelUrl = "https://www.youtube.com/@SheFlutter";
 const intro = { id: "", title: "Meet Tamica" };
-const latestCount = 6;
+const latestCount = 7; // the newest one large on Watch, six more below it
 const thumbDir = ".cache/youtube"; // copied to /assets/video/ after each build (see eleventy.config.js)
 
 const decode = (s) =>

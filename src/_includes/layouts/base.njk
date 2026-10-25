@@ -1,5 +1,5 @@
 {% from "partials/macros.njk" import logo with context %}
-{%- set pageTitle = (title + " | " + site.brand) if title else (site.brand + " | SEASONS by " + site.author) -%}
+{%- set pageTitle = (title + " | " + site.brand) if title else (site.author + " | " + site.brand) -%}
 {%- set pageDescription = description or site.description -%}
 <!doctype html>
 <html lang="en">
@@ -43,7 +43,7 @@
           <li><a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
           {%- endfor %}
         </ul>
-        <a class="btn btn--primary btn--sm" href="/letters/">Free Book One</a>
+        <a class="btn btn--primary btn--sm" href="/letters/">Join Letters</a>
       </nav>
     </div>
   </header>
@@ -56,7 +56,7 @@
     <div class="wrap site-footer__grid">
       <div>
         <a class="logo logo--footer" href="/" aria-label="{{ site.brand }}, home">{{ logo("logo__img", "white") }}<span class="logo__word" aria-hidden="true"><span class="logo__she">SHE</span> <span class="logo__flutter">FLUTTER</span></span></a>
-        <p class="site-footer__line">SEASONS, a novel series by {{ site.author }}, inspired by a true story.</p>
+        <p class="site-footer__line">{{ site.author }}: style, travel and the story behind SEASONS, a novel series inspired by her life.</p>
       </div>
       <nav aria-label="Footer">
         <h2 class="site-footer__heading">Explore</h2>
@@ -65,6 +65,7 @@
           <li><a href="{{ item.url }}">{{ item.label }}</a></li>
           {%- endfor %}
           <li><a href="/press/">Press</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
         </ul>
       </nav>
       <div>
